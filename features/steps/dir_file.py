@@ -12,9 +12,8 @@ class dir_create(object):
 	def dir(self):
 		pass_list = []
 		fail_list = []
-		today = date.today()
-		mydir_pass = os.path.join(os.getcwd(), "Result", "Pass", str(today))
-		mydir_fail = os.path.join(os.getcwd(), "Result", "Failed", str(today))
+		mydir_pass = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result", "Pass")
+		mydir_fail = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result", "Failed")
 		if not os.path.exists(mydir_pass):
 		    os.makedirs(mydir_pass)
 		else:
