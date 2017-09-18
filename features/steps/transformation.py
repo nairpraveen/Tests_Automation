@@ -51,19 +51,26 @@ class scenario(object):
 
 			client_file_name_split = client_file_name[-len(client_file_name):-4]
 
-			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Pass/"+client_file_name_split+".json"
-			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Failed/"+client_file_name_split+".json"
+			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Pass/"
+			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Failed/"
+			text_file_result = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/"+client_file_name_split+".json"
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
 				fail_list = "Rows count failed for " + client_file_name
 				rows_count_fail_list.append(list(fail_list))
-				with open(text_file_fail, "w") as output:
+				with open(text_file_result, "w") as output:
 					output.write(fail_list+ "\n")
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			else:
 				pass_list = "Row count Passed for " + client_file_name
 				rows_count_pass_list.append(list(pass_list))
-				with open(text_file_pass, "w") as output:
+				with open(text_file_result, "w") as output:
 					output.write(pass_list+ "\n")
+				with open(text_file_pass+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 
 
 			l1 = (list(client_file_data.columns))
@@ -78,13 +85,19 @@ class scenario(object):
 			if l1 == temp :
 				pass_list = "Columns match Passed for "+client_file_name
 				column_names_pass_list.append(list(pass_list))
-				with open(text_file_pass, "a") as output:
+				with open(text_file_result, "a") as output:
 					output.write(pass_list+ "\n")
+				with open(text_file_pass+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			else:
 				fail_list = "Columns match failed for "+client_file_name
 				column_names_fail_list.append(list(fail_list))
-				with open(text_file_fail, "a") as output:
+				with open(text_file_result, "a") as output:
 					output.write(fail_list+ "\n")
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 
 
 			temp1 = []
@@ -107,21 +120,30 @@ class scenario(object):
 			if len(pass_order_list) == len(l1):
 				pass_list = "Columns order Passed for "+client_file_name
 				column_order_pass_list.append(list(pass_list))
-				with open(text_file_pass, "a") as output:
+				with open(text_file_result, "a") as output:
 					output.write(pass_list)
 					output.write(str(pass_order_list)+ "\n")
+				with open(text_file_pass+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			elif pass_order_list[0] == "Not Equal":
 				fail_list = "Columns order failed for "+client_file_name
 				column_order_fail_list.append(fail_list)
-				with open(text_file_fail, "w") as output:
+				with open(text_file_result, "w") as output:
 					output.write(fail_list)
 					output.write(str(fail_order_list)+ "\n")
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			else:
 				fail_list = "Columns order failed for "+client_file_name
 				column_order_fail_list.append(fail_list)
-				with open(text_file_fail, "w") as output:
+				with open(text_file_result, "w") as output:
 					output.write(fail_list)
 					output.write(str(fail_order_list)+ "\n")
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			output.close()
 
 		return rows_count_pass_list, rows_count_fail_list, column_names_pass_list, column_names_fail_list, column_order_pass_list, column_order_fail_list

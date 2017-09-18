@@ -12,20 +12,17 @@ class dir_create(object):
 	def dir(self):
 		pass_list = []
 		fail_list = []
-		mydir_pass = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result", "Pass")
-		mydir_fail = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result", "Failed")
+		mydir_pass = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Pass")
+		mydir_fail = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Failed")
+		mydir_result = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result")
 		if not os.path.exists(mydir_pass):
 		    os.makedirs(mydir_pass)
-		else:
-			files = glob.glob(mydir_pass+"*.txt")
-			for f in files:
-				os.remove(f)
 
 		if not os.path.exists(mydir_fail):
 		    os.makedirs(mydir_fail)
-		else:
-			files = glob.glob(mydir_pass+"*.txt")
-			for f in files:
-				os.remove(f)
+		
 
-		return (mydir_pass, mydir_fail)
+		if not os.path.exists(mydir_result):
+		    os.makedirs(mydir_result)
+
+		return (mydir_pass, mydir_fail, mydir_result)
