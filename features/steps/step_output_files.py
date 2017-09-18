@@ -3,6 +3,7 @@ from hamcrest    import assert_that, equal_to
 from files import retrieve_files
 from transformation import scenario
 from dir_file import dir_create
+# from result_files import files_create
 
 
 
@@ -27,6 +28,7 @@ def step_rows_count_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
+	# result_files = 
 	# assert_that("pass", equal_to(rows_count))
 
 

@@ -33,12 +33,7 @@ class scenario(object):
 		control_file = scenario.control_file_values(control_file, control_file_sep_value)
 		today = date.today()
 
-		rows_count_pass_list = []
-		rows_count_fail_list = []
-		column_names_pass_list = []
-		column_names_fail_list = []
-		column_order_pass_list = []
-		column_order_fail_list = []
+		final_lines_to_file = {}
 
 		for i in range(0, len(datafiles_names)):
 			client_file = datafiles_names[i]
@@ -56,18 +51,12 @@ class scenario(object):
 			text_file_result = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/"+client_file_name_split+".json"
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				fail_list = "Rows count failed for " + client_file_name
-				rows_count_fail_list.append(list(fail_list))
-				with open(text_file_result, "w") as output:
-					output.write(fail_list+ "\n")
+				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but definition file has "+str(int(len(client_file_data)))}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 			else:
-				pass_list = "Row count Passed for " + client_file_name
-				rows_count_pass_list.append(list(pass_list))
-				with open(text_file_result, "w") as output:
-					output.write(pass_list+ "\n")
+				line1 = {"Key": "Rows count", "Result": "Passed"}
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
@@ -83,18 +72,12 @@ class scenario(object):
 				except Exception as e:
 					temp.append(col)
 			if l1 == temp :
-				pass_list = "Columns match Passed for "+client_file_name
-				column_names_pass_list.append(list(pass_list))
-				with open(text_file_result, "a") as output:
-					output.write(pass_list+ "\n")
+				line2 = {"Key": "Column names", "Result": "Passed"}
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 			else:
-				fail_list = "Columns match failed for "+client_file_name
-				column_names_fail_list.append(list(fail_list))
-				with open(text_file_result, "a") as output:
-					output.write(fail_list+ "\n")
+				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has "+str(l1)+" columns but definition file has "+str(temp)}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
@@ -118,33 +101,24 @@ class scenario(object):
 					else:
 						fail_order_list.append(l1[i])
 			if len(pass_order_list) == len(l1):
-				pass_list = "Columns order Passed for "+client_file_name
-				column_order_pass_list.append(list(pass_list))
-				with open(text_file_result, "a") as output:
-					output.write(pass_list)
-					output.write(str(pass_order_list)+ "\n")
+				line3 = {"Key": "Column order", "Result": "Passed"}
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 			elif pass_order_list[0] == "Not Equal":
-				fail_list = "Columns order failed for "+client_file_name
-				column_order_fail_list.append(fail_list)
-				with open(text_file_result, "w") as output:
-					output.write(fail_list)
-					output.write(str(fail_order_list)+ "\n")
+				line3 = {"Key": "Column order", "Result": "Failed"}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 			else:
-				fail_list = "Columns order failed for "+client_file_name
-				column_order_fail_list.append(fail_list)
-				with open(text_file_result, "w") as output:
-					output.write(fail_list)
-					output.write(str(fail_order_list)+ "\n")
+				line3 = {"Key": "Column order", "Result": "Failed"}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
+			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
+			with open(text_file_result, "w") as output:
+				json.dump(final_lines_to_file, output)
 			output.close()
 
-		return rows_count_pass_list, rows_count_fail_list, column_names_pass_list, column_names_fail_list, column_order_pass_list, column_order_fail_list
+		return final_lines_to_file
 	

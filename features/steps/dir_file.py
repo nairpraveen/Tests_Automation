@@ -10,8 +10,6 @@ class dir_create(object):
 		self.fn = None
 
 	def dir(self):
-		pass_list = []
-		fail_list = []
 		mydir_pass = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Pass")
 		mydir_fail = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Failed")
 		mydir_result = os.path.join(os.getcwd(), datetime.datetime.now().strftime('%Y-%m-%d_%H-%M'), "Result")
