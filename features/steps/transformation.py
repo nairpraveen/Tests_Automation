@@ -49,8 +49,10 @@ class scenario(object):
 			client_file_name = client_file.split('/')[2]
 			json_def_name = json_def.split('/')[1]
 
-			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Pass/"+client_file_name
-			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Failed/"+client_file_name
+			client_file_name_split = client_file_name[-len(client_file_name):-4]
+
+			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Pass/"+client_file_name_split+".json"
+			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/Failed/"+client_file_name_split+".json"
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
 				fail_list = "Rows count failed for " + client_file_name

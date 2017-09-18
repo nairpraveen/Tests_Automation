@@ -14,11 +14,15 @@ class retrieve_files(object):
 				total_file_name = file
 				if total_file_name[-12:-4] == str(pattern):
 					result.append(total_file_name)
+			elif fnmatch.fnmatch(file, '*.csv'):
+				total_file_name = file
+				if total_file_name[-12:-4] == str(pattern):
+					result.append(total_file_name)
 		return result
 
 
 	def files(self, date, masterfile_loc):
-		masterfile = pd.read_json(masterfile_loc+"/partnermasterfile.json")
+		masterfile = pd.read_json(masterfile_loc)
 		control_def_file_loc = masterfile.controlfile.ix[0]
 		controlfile = pd.read_json(control_def_file_loc)
 		controlfile_folder = controlfile.filename.ix[0]
