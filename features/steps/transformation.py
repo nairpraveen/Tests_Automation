@@ -56,14 +56,12 @@ class scenario(object):
 				fail_list = "Rows count failed for " + client_file_name
 				rows_count_fail_list.append(list(fail_list))
 				with open(text_file_fail, "w") as output:
-					json.dump(fail_list+ "\n", output)
-					# output.write(fail_list+ "\n")
+					output.write(fail_list+ "\n")
 			else:
 				pass_list = "Row count Passed for " + client_file_name
 				rows_count_pass_list.append(list(pass_list))
 				with open(text_file_pass, "w") as output:
-					json.dump(pass_list+ "\n", output)
-					# output.write(pass_list+ "\n")
+					output.write(pass_list+ "\n")
 
 
 			l1 = (list(client_file_data.columns))
@@ -79,14 +77,12 @@ class scenario(object):
 				pass_list = "Columns match Passed for "+client_file_name
 				column_names_pass_list.append(list(pass_list))
 				with open(text_file_pass, "a") as output:
-					json.dump(pass_list+ "\n", output)
-					# output.write(pass_list+ "\n")
+					output.write(pass_list+ "\n")
 			else:
 				fail_list = "Columns match failed for "+client_file_name
 				column_names_fail_list.append(list(fail_list))
 				with open(text_file_fail, "a") as output:
-					json.dump(fail_list+ "\n", output)
-					# output.write(fail_list+ "\n")
+					output.write(fail_list+ "\n")
 
 
 			temp1 = []
