@@ -63,21 +63,15 @@ class scenario(object):
 
 
 			l1 = (list(client_file_data.columns))
-			l2 = (json_def_data["columns"])
-			temp = []
-			for index, col in enumerate(l1):
-				try:
-					if l2[col]['order'] == str(index+1):
-						temp.append(col)
-				except Exception as e:
-					temp.append(col)
-			if l1 == temp :
+			l2 = (list(json_def_data["columns"].index))
+
+			if len(set(l1).intersection(l2)) == len(l2) :
 				line2 = {"Key": "Column names", "Result": "Passed"}
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 			else:
-				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has "+str(l1)+" columns but definition file has "+str(temp)}
+				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has "+str(l1)+" columns but definition file has "+str(l2)}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
