@@ -71,47 +71,38 @@ class scenario(object):
 					for line in open(client_file):
 						f1.write(line)
 			else:
-				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has "+str(l1)+" columns but definition file has "+str(l2)}
+				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
 
+			l2 = (json_def_data["columns"])
+			l2_values = (list(json_def_data["columns"].index))
 
 			temp1 = []
-			for index, col in enumerate(l1):
-				try:
-					if l2[col]['order'] == str(index+1):
-						temp1.append(col)
-				except Exception as e:
-					temp1.append(col)
-			pass_order_list = []
-			fail_order_list = []
-			if l1[i] != temp1[i]:
-				pass_order_list.append(list("Not Equal"))
+			def_col, pass_list, fail_list = {}, {}, {}
+			for index, col in enumerate(l2_values):
+				def_col[int(l2[col]['order'])-1] = col
+				def_col.update(def_col)
+			for i in def_col:
+				if str(def_col[i]) == str(l1[i]):
+					pass_list[i] = str(def_col[i])
+				else:
+					fail_list[i] = str(def_col[i])
+					
+			if len(fail_list) != 0:
+				line3 = {"Key": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
 			else:
-				for i in range(0, len(l1)):
-					if l1[i] == temp1[i]:
-						pass_order_list.append(l1[i])
-					else:
-						fail_order_list.append(l1[i])
-			if len(pass_order_list) == len(l1):
 				line3 = {"Key": "Column order", "Result": "Passed"}
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
-			elif pass_order_list[0] == "Not Equal":
-				line3 = {"Key": "Column order", "Result": "Failed"}
-				with open(text_file_fail+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
-			else:
-				line3 = {"Key": "Column order", "Result": "Failed"}
-				with open(text_file_fail+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
 			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
 			with open(text_file_result, "w") as output:
-				json.dump(final_lines_to_file, output)
+				json.dump(final_lines_to_file, output, indent=2)
 			output.close()
 
 		return final_lines_to_file
