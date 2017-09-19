@@ -83,8 +83,9 @@ class scenario(object):
 			def_col, pass_list, fail_list = {}, {}, {}
 
 			for index, col in enumerate(l2_values):
-				def_col[int(l2[col]['order'])-1] = col
-				def_col.update(def_col)
+				if int(l2[col]['order']) <= len(l1):
+					def_col[int(l2[col]['order'])-1] = col
+					def_col.update(def_col)
 			if len(def_col.keys()) != len(l1):
 				fail_list[-1000] = "Length of the columns doesn't match and the columns present in partner files are"
 				for i in range(len(l1)):

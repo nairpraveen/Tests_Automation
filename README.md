@@ -9,6 +9,6 @@ Instructions to run the project
 
 ==========================================================================================
 
-behave -D date="20170504" -D masterfile_loc="path of the masterfile for partner"
+behave -D date="20170504" -D masterfile_loc="location of masterfile with name"
 
 ===========================================================================================
