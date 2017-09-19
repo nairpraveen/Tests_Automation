@@ -50,31 +50,24 @@ class scenario(object):
 			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Failed/"
 			text_file_result = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/"+client_file_name_split+".json"
 
+			# row count validation
+
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
 				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but definition file has "+str(int(len(client_file_data)))}
-				with open(text_file_fail+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
 			else:
 				line1 = {"Key": "Rows count", "Result": "Passed"}
-				with open(text_file_pass+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
 
+			# column names validation
 
 			l1 = (list(client_file_data.columns))
 			l2 = (list(json_def_data["columns"].index))
 
 			if len(set(l1).intersection(l2)) == len(l2) :
 				line2 = {"Key": "Column names", "Result": "Passed"}
-				with open(text_file_pass+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
 			else:
 				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
-				with open(text_file_fail+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
+
+			# column order validation
 
 			l2 = (json_def_data["columns"])
 			l2_values = (list(json_def_data["columns"].index))
@@ -99,15 +92,26 @@ class scenario(object):
 					
 			if len(fail_list) != 0:
 				line3 = {"Key": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
-				with open(text_file_fail+client_file_name, 'w') as f1:
-					for line in open(client_file):
-						f1.write(line)
 			else:
 				line3 = {"Key": "Column order", "Result": "Passed"}
+
+			# copying the file to passed or fail folder
+
+			if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed":
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
+			else:
+				with open(text_file_fail+client_file_name, 'w') as f1:
+					for line in open(client_file):
+						f1.write(line)
+
+			# writing the output to the result file
+
 			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
+
+			# creating a json output file in result folder
+
 			with open(text_file_result, "w") as output:
 				json.dump(final_lines_to_file, output, indent=2)
 			output.close()
