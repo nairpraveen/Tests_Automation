@@ -53,7 +53,7 @@ class scenario(object):
 			# row count validation
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but definition file has "+str(int(len(client_file_data)))}
+				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
 			else:
 				line1 = {"Key": "Rows count", "Result": "Passed"}
 
