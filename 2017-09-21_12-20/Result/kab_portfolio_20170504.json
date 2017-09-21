@@ -1,0 +1,22 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Passed"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Failed",
+    "Output": "The partner file has other columns {'TotalAmountofLoanChargeOffPrincipal', 'TotalAmountofLoanChargeOff', 'TotalAmountOfLoanChargeOffFees', 'PortfolioTransactionId', 'TotalAmountOfLoanChargeOffInterest', 'PortfolioTransactionID', 'TotalAmountofLoanChargeOffInterest', 'TotalAmountOfLoanChargeOff', 'TotalAmountofLoanChargeOffFees', 'TotalAmountOfLoanChargeOffPrincipal'}"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Failed",
+    "Column not in order": [
+      "PortfolioTransactionID",
+      "TotalAmountOfLoanChargeOff",
+      "TotalAmountOfLoanChargeOffFees",
+      "TotalAmountOfLoanChargeOffInterest",
+      "TotalAmountOfLoanChargeOffPrincipal"
+    ]
+  }
+}

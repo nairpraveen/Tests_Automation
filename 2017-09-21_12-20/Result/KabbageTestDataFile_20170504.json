@@ -1,0 +1,15 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Failed",
+    "Output": "The partner file has 100 rows but control file has 6"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Passed"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "filename": "Lookup file",
+  "filenameformat" : "kab_lookup_yyyymmdd.txt",
+  "decimalseparator" : ".",
+  "feildseparator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "availability": "Daily",
+  "encrypted": "No",
+  "fullorincremental": "Full",
+  "description": "",
+
+  "columns": {
+    "LookupTableName": {
+      "order": "1",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Lookup table name column is found"
+    },
+    "ColumnName": {
+      "order": "2",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Column Name from file"
+    },
+    "ID": {
+      "order": "3",
+      "dbtype": "NVARCHAR(10)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Identifier of specified value"
+    },
+    "Value": {
+      "order": "4",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Text value"
+    }
+  }
+}

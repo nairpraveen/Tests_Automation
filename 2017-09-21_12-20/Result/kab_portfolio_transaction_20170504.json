@@ -1,0 +1,14 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Passed"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Passed"
+  }
+}

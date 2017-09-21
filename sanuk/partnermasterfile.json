@@ -1,0 +1,33 @@
+{
+ "partner": "santander",
+  "datafilelocation" : "data",
+  "definitionfilelocation" : "data/JSONDefinition",
+  "controlfile": "definition_data/ControlFileDefinition.json",
+  "files": {
+    "file1":
+    {
+      "filename": "PortfolioTransactionFile",
+      "filedeffile": "definition_data/PortfolioTransactionFileDefinition.json"
+    },
+    "file2":
+    {
+      "filename": "PortfolioFile",
+      "filedeffile": "definition_data/PortfolioFileDefinition.json"
+    },
+    "file3":
+    {
+      "filename": "PortfolioProjectionFile",
+      "filedeffile": "definition_data/PortfolioProjectionFileDefinition.json"
+    },
+    "file4":
+    {
+      "filename": "KabbageTestDataFile",
+      "filedeffile": "definition_data/KabbageTestFileDefinition.json"
+    },
+    "file5":
+    {
+      "filename": "TestFile",
+      "filedeffile": "definition_data/TestFileDefinition.json"
+    }
+  }
+}

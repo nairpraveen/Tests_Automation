@@ -1,0 +1,81 @@
+{
+  "filename": "ThreatMetrix",
+  "filenameformat" : "kab_threatmetrix_yyyymmdd_hh.txt",
+  "decimalseparator" : ".",
+  "feildseparator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
+  "availability": "Hourly",
+  "encrypted": "Yes",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "CreationDate": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of event"
+    },
+    "EventType": {
+      "order": "3",
+      "dbtype": "NVARCHAR(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Type of ThreatMetrix event captured"
+    },
+    "ReasonCode": {
+      "order": "4",
+      "dbtype": "NVARCHAR(3000)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Delimited list of codes captured"
+    },
+    "RiskRating": {
+      "order": "5",
+      "dbtype": "NVARCHAR(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Outcome rating of the ThreadMetrix event"
+    },
+    "CreationTime": {
+      "order": "6",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Time of event"
+    }
+  }
+}

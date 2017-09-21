@@ -1,0 +1,23 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Passed"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Passed"
+  },
+  "Scenario4": {
+    "Key": "Empty Rows",
+    "Result": "Failed",
+    "Output": [
+      "The file has empty row at 4",
+      "The file has empty row at 6",
+      "The file has empty row at 8"
+    ]
+  }
+}

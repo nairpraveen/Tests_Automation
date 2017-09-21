@@ -1,0 +1,23 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Failed",
+    "Output": "The partner file has 20 rows but control file has 9"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Failed",
+    "Column not in order": [
+      "Length of the columns doesn't match and the columns present in partner files are",
+      "accountid",
+      "loanaid",
+      "amount",
+      "price",
+      "id"
+    ]
+  }
+}
