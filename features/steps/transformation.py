@@ -1,5 +1,5 @@
 import pandas as pd
-import glob, os, datetime
+import glob, os, datetime, re
 from dir_file import dir_create
 from datetime import date
 import json
@@ -95,9 +95,36 @@ class scenario(object):
 			else:
 				line3 = {"Key": "Column order", "Result": "Passed"}
 
+			# checking the empty rows
+
+			i = 1
+			matches = {}
+			empty_rows_list = []
+			
+			with open(client_file,'r') as out:
+				for line in out:
+					if line == '\n':
+						matches[i] = "matched"
+						matches.update(matches)
+					else:
+						matches[i] = "not matched"
+						matches.update(matches)
+					i = i +1
+
+			key = list(matches.keys())
+			val = list(matches.values())
+			for i in range(len(val)):
+				if val[i] == "matched":
+					empty_rows_list.append("The file has empty row at "+str(key[i]))
+
+			if len(empty_rows_list) != 0:
+				line4 = {"Key": "Empty Rows", "Result": "Failed", "Output": empty_rows_list}
+			else:
+				line4 = {"Key": "Empty Rows", "Result": "Passed"}
+				
 			# copying the file to passed or fail folder
 
-			if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed":
+			if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed":
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
@@ -108,7 +135,7 @@ class scenario(object):
 
 			# writing the output to the result file
 
-			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
+			final_lines_to_file = {"Scenario1" : line1, "Scenario2" : line2, "Scenario3" : line3, "Scenario4" : line4}
 
 			# creating a json output file in result folder
 
