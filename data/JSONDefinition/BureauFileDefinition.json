@@ -1,0 +1,37 @@
+{
+  "filename": "Bureau Control file",
+  "filenameformat" : "kab_bureau_control_yyyymmdd.txt",
+  "decimalseperator" : ".",
+  "feildseperator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "avilability": "Daily",
+  "encryted": "No",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "FileType": {
+      "order": "1",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Type of Bureau file"
+    },
+    "NumberOfFiles": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Number of files sent of this type"
+    }
+  }
+}

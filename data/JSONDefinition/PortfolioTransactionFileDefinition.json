@@ -1,0 +1,225 @@
+{
+  "filename": "PortfolioTransactionFile",
+  "filenameformat" : "kab_portfolio_transaction_yyyymmdd.txt",
+  "decimalseperator" : ".",
+  "feildseperator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
+  "avilability": "Daily",
+  "encryted": "Yes",
+  "fullorincremental": "Incremental",
+  "description": "",
+  "column_names": "['AccountID', 'LoanID', 'PostedTransactionID', 'ReversalTransactionID', 'TransactionReversalFlag', 'AmountAppliedToLoan', 'PrincipalPaymentApplied', 'FeePaymentApplied', 'FeeApplied', 'PaymentApplied', 'AdvanceApplied', 'PrincipalAmountAppliedToLoan', 'FeeAmountAppliedToLoan', 'NSFFeeAmountAppliedToLoan', 'LateFeeAmountAppliedToLoan', 'InterestAmountAppliedToLoan', 'TransactionAmount', 'TransactionCode', 'HexPostedTransactionID']",
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "LoanID": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage loan identifier "
+    },
+    "PostedTransactionID": {
+      "order": "3",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage transaction identifier"
+    },
+    "ReversalTransactionID": {
+      "order": "4",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Kabbage transaction identifier that reversed the original transaction"
+    },
+	 "TransactionReversalFlag": {
+      "order": "5",
+      "dbtype": "BIT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Denotes the transaction row was reversed"
+    },
+    "AmountAppliedToLoan": {
+      "order": "6",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Full amount applied for the given loan"
+    },
+    "PrincipalPaymentApplied": {
+      "order": "7",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Amount of the payment allocated to principal, if applicable"
+    },
+    "FeePaymentApplied": {
+      "order": "8",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Amount of the payment allocated to fees, if applicable"
+    },
+	 "FeeApplied": {
+      "order": "9",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Amount of the fee assessed to loan, if applicable"
+    },
+    "PaymentApplied": {
+      "order": "10",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Amount of the payment applied to the loan, if applicable"
+    },
+    "AdvanceApplied": {
+      "order": "11",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Amount of the loan, if applicable"
+    },
+    "PrincipalAmountAppliedToLoan": {
+      "order": "12",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "",
+      "description": "Amount of transaction applied to principal, for the given loan"
+    },
+	 "FeeAmountAppliedToLoan": {
+      "order": "13",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount of transaction applied to fees, for the given loan"
+    },
+    "NSFFeeAmountAppliedToLoan": {
+      "order": "14",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount of transaction applied to NSF fees, for the given loan"
+    },
+    "LateFeeAmountAppliedToLoan": {
+      "order": "15",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount of transaction applied to late fees, for the given loan"
+    },
+    "InterestAmountAppliedToLoan": {
+      "order": "16",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount of transaction applied to interest, for the given loan"
+    },
+	"TransactionAmount": {
+      "order": "17",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Total amount of the transaction"
+    },
+    "TransactionCode": {
+      "order": "18",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Code denoting the type of transaction applied"
+    },
+    "HexPostedTransactionID": {
+      "order": "19",
+      "dbtype": "CHAR(8)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Hex version of PostedTransactionID"
+    }
+  }
+}
+  
