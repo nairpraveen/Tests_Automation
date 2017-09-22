@@ -15,3 +15,8 @@ Scenario: To check if the column names in partner file and definition file match
 Scenario: To check if the order of the column names match in partner file and definition file.
    Given  a file
     Then  column order should match
+
+@all
+Scenario: Check for null values
+  Given   a file
+  Then    null values are not allowed
