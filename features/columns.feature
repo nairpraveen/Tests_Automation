@@ -4,6 +4,11 @@ Feature: Check whether the columns exists or not
 @all
 Scenario: Proper columns present
    Given  the file
+    Then  control file check
+
+@all
+Scenario: Proper columns present
+   Given  the file
     Then  rows count should match
 
 @all
@@ -15,3 +20,8 @@ Scenario: Row counts match control file
 Scenario: Row counts match control file
    Given  the file
     Then  column order should match
+
+@all
+Scenario: Row counts match control file
+   Given  the file
+    Then  empty rows
