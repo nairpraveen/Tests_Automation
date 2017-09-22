@@ -3,6 +3,8 @@ import glob, os, datetime
 from dir_file import dir_create
 from datetime import date
 import json
+import numpy as np
+from pprint import pprint
 
 class scenario(object):
 	"""docstring for Count"""
@@ -53,7 +55,7 @@ class scenario(object):
 			# row count validation
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but definition file has "+str(int(len(client_file_data)))}
+				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
 			else:
 				line1 = {"Key": "Rows count", "Result": "Passed"}
 
@@ -89,15 +91,26 @@ class scenario(object):
 						pass_list[i] = str(def_col[i])
 					else:
 						fail_list[i] = str(def_col[i])
-					
+
 			if len(fail_list) != 0:
 				line3 = {"Key": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
 			else:
 				line3 = {"Key": "Column order", "Result": "Passed"}
 
+			l4 = client_file_data
+			dff = pd.DataFrame(l4)
+			dff2=dff[dff.isnull().any(axis=1)]
+			if(dff.isnull().sum().sum()):
+				output1= dff.columns[dff.isnull().any().tolist()] +":"+ str(dff2.index.tolist())
+				line4 = {"Key": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
+			else:
+				line4 = {"Key": "Check for nulls", "Result": "Passed"}
+
+
+
 			# copying the file to passed or fail folder
 
-			if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed":
+			if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed":
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
@@ -106,15 +119,16 @@ class scenario(object):
 					for line in open(client_file):
 						f1.write(line)
 
+
+
 			# writing the output to the result file
 
-			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
+			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3,"Scenario4":line4}
 
 			# creating a json output file in result folder
 
 			with open(text_file_result, "w") as output:
 				json.dump(final_lines_to_file, output, indent=2)
-			output.close()
+				output.close()
 
 		return final_lines_to_file
-	

@@ -1,0 +1,26 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Failed",
+    "Output": "The partner file has 6 rows but control file has 4"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Failed",
+    "Column not in order": [
+      "Length of the columns doesn't match and the columns present in partner files are",
+      "id",
+      "name",
+      "age",
+      "gender"
+    ]
+  },
+  "Scenario4": {
+    "Key": "Check for nulls",
+    "Result": "Passed/Nulls are not found"
+  }
+}

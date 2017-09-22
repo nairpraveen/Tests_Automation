@@ -1,0 +1,70 @@
+{
+  "filename": "Account Consent",
+  "filenameformat" : "kab_account_consent_yyyymmdd.txt",
+  "decimalseperator" : ".",
+  "feildseperator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "avilability": "Daily",
+  "encryted": "No",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "ConsentTypeID": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Type of consent provided"
+    },
+    "Accepted": {
+      "order": "3",
+      "dbtype": "BIT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Specifies if the customer has accepted or declined consent."
+    },
+    "ConsentDate": {
+      "order": "4",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of consent"
+    },
+    "ConsentTime": {
+      "order": "5",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Time of consent"
+    }
+  }
+}

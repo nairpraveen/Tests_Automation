@@ -1,0 +1,29 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Failed",
+    "Output": "The partner file has 100 rows but control file has 6"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Passed"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Passed"
+  },
+  "Scenario4": {
+    "Key": "Check for nulls",
+    "Result": "Failed",
+    "Column names'}": [
+      "ID",
+      "Fname",
+      "Lname",
+      "Age",
+      "Gender",
+      "StartDate",
+      "Dept",
+      "Salary"
+    ]
+  }
+}

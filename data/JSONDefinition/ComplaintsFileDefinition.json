@@ -1,0 +1,269 @@
+{
+  "filename": "Complaints",
+  "filenameformat" : "kab_complaints_yyyymmdd.txt",
+  "decimalseperator" : ".",
+  "feildseperator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
+  "avilability": "Daily",
+  "encryted": "Yes",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "CaseReference": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage case identitifer"
+    },
+    "Resolver": {
+      "order": "3",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Owner of the case"
+    },
+    "Definition": {
+      "order": "4",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Type of case"
+    },
+	 "Stage": {
+      "order": "5",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Denotes the current state of the case"
+    },
+    "Status": {
+      "order": "6",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Denotes the current status of the case"
+    },
+    "ReceivedDate": {
+      "order": "7",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date the case was created"
+    },
+    "ClosedDate": {
+      "order": "8",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Date the case was closed"
+    },
+	 "AcceptanceConfirmed": {
+      "order": "9",
+      "dbtype": "NVARCHAR(3)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Denotes whether case was accepted"
+    },
+    "Decision": {
+      "order": "10",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Denotes outcome of the case"
+    },
+    "ComplaintType": {
+      "order": "11",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Describes the generator of the complaint"
+    },
+    "Issues": {
+      "order": "12",
+      "dbtype": "NVARCHAR(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Free form text of complaint issues"
+    },
+	 "Investigation": {
+      "order": "13",
+      "dbtype": "NVARCHAR(500)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Free form text of investigation notes"
+    },
+    "Actions": {
+      "order": "14",
+      "dbtype": "NVARCHAR(500)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Free form text of actions taken"
+    },
+    "RedressPayments": {
+      "order": "15",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Payments returned to customer"
+    },
+    "D&IPayments": {
+      "order": "16",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Distress and inconvenience payments"
+    },
+	"CreatedBy": {
+      "order": "17",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Name of representative that opened the case"
+    },
+    "FinalResponseSent": {
+      "order": "18",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Indicates whether the ticket had a final response sent"
+    },
+    "SummaryResponseSent": {
+      "order": "19",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Indicates whether the ticket had a summary response sent"
+    },
+    "ParentTicketCreateDate": {
+      "order": "20",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Parent ticket creation date"
+    },
+	"ParentTicketClosedDate": {
+      "order": "21",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Parent ticket closed date"
+    },
+    "DirectDebitStatus": {
+      "order": "22",
+      "dbtype": "NVARCHAR(50)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Bank account validation result status"
+    },
+    "CurrencyISOCode": {
+      "order": "23",
+      "dbtype": "NVARCHAR(3)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Currency ISO code"
+    }
+  }
+}
+  

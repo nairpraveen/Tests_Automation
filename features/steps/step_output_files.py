@@ -3,11 +3,12 @@ from hamcrest    import assert_that, equal_to
 from files import retrieve_files
 from transformation import scenario
 from dir_file import dir_create
+from os import *
 # from result_files import files_create
 
 
 
-@given('the file')
+@given('a file')
 def step_given_the_file(context):
 	date = context.config.userdata.get("date")
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
@@ -20,7 +21,7 @@ def step_given_the_file(context):
 #     pass
 
 
-@then('rows count should match')
+@then('row count should match')
 def step_rows_count_should_match(context):
 	dir_file = dir_create()
 	values = dir_file.dir()
@@ -48,3 +49,18 @@ def step_column_order_should_match(context):
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
 	# assert_that("pass", equal_to(column_order))
+
+@then('null values are not allowed')
+def step_null_should_match(context):
+	date = context.config.userdata.get("date")
+	masterfile_loc = context.config.userdata.get("masterfile_loc")
+	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
+	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
+	# assert_that("pass", equal_to(column_order))
+
+
+
+
+
+
+

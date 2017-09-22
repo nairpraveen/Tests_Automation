@@ -1,0 +1,37 @@
+{
+  "filename": "Controlfile",
+  "filenameformat" : "kab_control_yyyymmdd.txt",
+  "decimalseperator" : ".",
+  "feildseperator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "avilability": "Daily",
+  "encryted": "No",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "FileName": {
+      "order": "1",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage file name"
+    },
+    "NumberOfRows": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Number of rows contained in the given file"
+    }
+  }
+}

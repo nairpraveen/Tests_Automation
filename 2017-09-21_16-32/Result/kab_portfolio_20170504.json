@@ -1,0 +1,82 @@
+{
+  "Scenario1": {
+    "Key": "Rows count",
+    "Result": "Passed"
+  },
+  "Scenario2": {
+    "Key": "Column names",
+    "Result": "Failed",
+    "Output": "The partner file has other columns {'TotalAmountOfLoanChargeOff', 'PortfolioTransactionId', 'TotalAmountofLoanChargeOffInterest', 'TotalAmountofLoanChargeOffFees', 'TotalAmountOfLoanChargeOffFees', 'TotalAmountofLoanChargeOff', 'TotalAmountofLoanChargeOffPrincipal', 'PortfolioTransactionID', 'TotalAmountOfLoanChargeOffInterest', 'TotalAmountOfLoanChargeOffPrincipal'}"
+  },
+  "Scenario3": {
+    "Key": "Column order",
+    "Result": "Failed",
+    "Column not in order": [
+      "PortfolioTransactionID",
+      "TotalAmountOfLoanChargeOff",
+      "TotalAmountOfLoanChargeOffFees",
+      "TotalAmountOfLoanChargeOffInterest",
+      "TotalAmountOfLoanChargeOffPrincipal"
+    ]
+  },
+  "Scenario4": {
+    "Key": "Check for nulls",
+    "Result": "Failed",
+    "Column names'}": [
+      "AccountID",
+      "LoanID",
+      "DisbursementDate",
+      "OriginalPurchaseAmount",
+      "CurrentBalance",
+      "OutstandingPrincipal",
+      "OutstandingFees",
+      "RemainingPayments",
+      "PaymentsApplied",
+      "CurrentDue",
+      "PastDue",
+      "PastDue1",
+      "PastDue2",
+      "PastDue3",
+      "PastDue4",
+      "PastDue5",
+      "PastDue6",
+      "PastDue7",
+      "CurrentDaysDelinquent",
+      "DateOfDelinquency",
+      "CurrentDelinquencyStatus",
+      "TotalDaysDelinquent",
+      "TotalLateFeeAmount",
+      "PayOffDate",
+      "ChargeOffDate",
+      "TotalAmountofLoanChargeOff",
+      "TotalAmountofLoanChargeOffFees",
+      "TotalAmountofLoanChargeOffInterest",
+      "TotalAmountofLoanChargeOffPrincipal",
+      "CurrentChargeOffBalance",
+      "BillingTableID",
+      "InterestRate",
+      "TermLengthMonths",
+      "LastPaymentDate",
+      "LastPaymentAmount",
+      "NextPaymentDate",
+      "NextPaymentAmount",
+      "InvoiceNumber",
+      "PortfolioTransactionId",
+      "LastDateDelinquent",
+      "NumberTimesDelinquent",
+      "WriteOffBalance",
+      "ClosedOnDate",
+      "OriginalMaturityDate",
+      "CurrentMaturityDate",
+      "LoanDelinquencyStartDate",
+      "CurrentDelinquentInstallments",
+      "TotalDelinquentPrincipal",
+      "TotalDelinquentInterest",
+      "NumberOfPaidInstallments",
+      "NextPrincipalAmount",
+      "NextInterestAmount",
+      "APR",
+      "ReversalDate"
+    ]
+  }
+}
