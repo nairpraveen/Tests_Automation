@@ -28,5 +28,5 @@ Scenario: Check for null values
 
 @all
 Scenario: Row counts match control file
-   Given  the file
+   Given  a file
     Then  empty rows

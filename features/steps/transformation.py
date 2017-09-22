@@ -101,6 +101,19 @@ class scenario(object):
 				else:
 					line3 = {"Key": "Column order", "Result": "Passed"}
 
+
+				#checking null values
+
+				l4 = client_file_data
+				dff = pd.DataFrame(l4)
+				dff2=dff[dff.isnull().any(axis=1)]
+				if(dff.isnull().sum().sum()):
+					dff2.index=dff2.index+1
+					output1= dff.columns[dff.isnull().any().tolist()] +":"+ str(dff2.index.tolist())
+					line4 = {"Key": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
+				else:
+					line4 = {"Key": "Check for nulls", "Result": "Passed"}
+
 				# checking the empty rows
 
 				i = 1
@@ -124,13 +137,13 @@ class scenario(object):
 						empty_rows_list.append("The file has empty row at "+str(key[i]))
 
 				if len(empty_rows_list) != 0:
-					line4 = {"Key": "Empty Rows", "Result": "Failed", "Output": empty_rows_list}
+					line5 = {"Key": "Empty Rows", "Result": "Failed", "Output": empty_rows_list}
 				else:
-					line4 = {"Key": "Empty Rows", "Result": "Passed"}
+					line5 = {"Key": "Empty Rows", "Result": "Passed"}
 					
 				# copying the file to passed or fail folder
 
-				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed":
+				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed":
 					with open(text_file_pass+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
@@ -142,7 +155,7 @@ class scenario(object):
 
 				# writing the output to the result file
 
-				final_lines_to_file = {"Scenario1" : line1, "Scenario2" : line2, "Scenario3" : line3, "Scenario4" : line4}
+				final_lines_to_file = {"Scenario1" : line1, "Scenario2" : line2, "Scenario3" : line3, "Scenario4" : line4, "Scenario5" : line5}
 
 				# creating a json output file in result folder
 
