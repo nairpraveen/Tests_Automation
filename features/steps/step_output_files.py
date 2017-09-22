@@ -4,9 +4,6 @@ from files import retrieve_files
 from transformation import scenario
 from dir_file import dir_create
 from os import *
-# from result_files import files_create
-
-
 
 @given('a file')
 def step_given_the_file(context):
@@ -16,9 +13,6 @@ def step_given_the_file(context):
 	context.transformation = scenario()
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	assert_that(len(datafiles_names) > 0)
-# @when('the job checks for valid columns')
-# def step_when_file_generated(context):
-#     pass
 
 
 @then('row count should match')
@@ -29,8 +23,6 @@ def step_rows_count_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	# result_files = 
-	# assert_that("pass", equal_to(rows_count))
 
 
 @then('column names should match')
@@ -39,7 +31,6 @@ def step_column_names_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	# assert_that("pass", equal_to(column_names))
 
 
 @then('column order should match')
@@ -48,7 +39,7 @@ def step_column_order_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	# assert_that("pass", equal_to(column_order))
+
 
 @then('null values are not allowed')
 def step_null_should_match(context):
@@ -56,11 +47,3 @@ def step_null_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	# assert_that("pass", equal_to(column_order))
-
-
-
-
-
-
-

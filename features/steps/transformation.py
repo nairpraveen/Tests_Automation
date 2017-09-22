@@ -25,7 +25,7 @@ class scenario(object):
 
 	def seperator_value(def_file_name):
 		sep_value = pd.read_json(def_file_name)
-		sep_value = sep_value.feildseperator.ix[0]
+		sep_value = sep_value.fieldseparator.ix[0]
 		return sep_value
 
 
@@ -55,9 +55,9 @@ class scenario(object):
 			# row count validation
 
 			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
+				line1 = {"Test": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
 			else:
-				line1 = {"Key": "Rows count", "Result": "Passed"}
+				line1 = {"Test": "Rows count", "Result": "Passed"}
 
 			# column names validation
 
@@ -65,9 +65,9 @@ class scenario(object):
 			l2 = (list(json_def_data["columns"].index))
 
 			if len(set(l1).intersection(l2)) == len(l2) :
-				line2 = {"Key": "Column names", "Result": "Passed"}
+				line2 = {"Test": "Column names", "Result": "Passed"}
 			else:
-				line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
+				line2 = {"Test": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
 
 			# column order validation
 
@@ -93,9 +93,9 @@ class scenario(object):
 						fail_list[i] = str(def_col[i])
 
 			if len(fail_list) != 0:
-				line3 = {"Key": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
+				line3 = {"Test": "Column order", "Result": "Failed", "Output": "The expected column order is "+str(list(def_col.values()))+" but we have "+str(list(fail_list.values()))}
 			else:
-				line3 = {"Key": "Column order", "Result": "Passed"}
+				line3 = {"Test": "Column order", "Result": "Passed"}
 
 			#checking null values
 			l4 = client_file_data
