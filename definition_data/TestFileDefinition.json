@@ -2,7 +2,7 @@
   "filename": "TestFile",
   "filenameformat" : "testfile_yyyymmdd.csv",
   "decimalseparator" : ".",
-  "feildseparator": ",",
+  "fieldseparator": ",",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",

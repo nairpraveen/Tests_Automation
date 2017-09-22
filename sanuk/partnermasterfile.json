@@ -1,7 +1,7 @@
 {
  "partner": "santander",
   "datafilelocation" : "data",
-  "definitionfilelocation" : "data/JSONDefinition",
+  "definitionfilelocation" : "definition_data",
   "controlfile": "definition_data/ControlFileDefinition.json",
   "files": {
     "file1":
@@ -26,7 +26,7 @@
     },
     "file5":
     {
-      "filename": "TestFile",
+      "filename": "TestCSV",
       "filedeffile": "definition_data/TestFileDefinition.json"
     }
   }

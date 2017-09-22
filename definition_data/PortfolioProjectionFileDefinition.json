@@ -2,7 +2,7 @@
   "filename": "PortfolioProjectionFile",
   "filenameformat" : "kab_portfolio_projection_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",

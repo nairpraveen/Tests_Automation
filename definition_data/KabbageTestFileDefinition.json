@@ -2,7 +2,7 @@
   "filename": "KabbageTestDataFile",
   "filenameformat" : "KabbageTestDataFile_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "MMDDYYYY",
   "timeformat": "HHMMSS",
   "availability": "Daily",

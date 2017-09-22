@@ -2,7 +2,7 @@
   "filename": "PortfolioTransactionFile",
   "filenameformat" : "kab_portfolio_transaction_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",
