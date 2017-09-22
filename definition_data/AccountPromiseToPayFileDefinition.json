@@ -2,7 +2,7 @@
   "filename": "Account Promise-to-Pay",
   "filenameformat" : "kab_account_promisetopay_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "HHMMSS",
   "availability": "Daily",

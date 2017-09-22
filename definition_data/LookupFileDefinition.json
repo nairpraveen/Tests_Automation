@@ -2,7 +2,7 @@
   "filename": "Lookup file",
   "filenameformat" : "kab_lookup_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "HHMMSS",
   "availability": "Daily",

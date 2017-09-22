@@ -2,7 +2,7 @@
   "filename": "Experian Bank Verification File",
   "filenameformat" : "kab_experian_bank_verification_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "N/A",
   "timeformat": "N/A",
   "availability": "Daily",

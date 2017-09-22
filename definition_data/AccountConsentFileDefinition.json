@@ -2,7 +2,7 @@
   "filename": "Account Consent",
   "filenameformat" : "kab_account_consent_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "HHMMSS",
   "availability": "Daily",

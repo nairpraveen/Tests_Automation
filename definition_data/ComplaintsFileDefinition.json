@@ -2,7 +2,7 @@
   "filename": "Complaints",
   "filenameformat" : "kab_complaints_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",

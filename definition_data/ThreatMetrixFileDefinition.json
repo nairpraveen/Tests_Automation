@@ -2,7 +2,7 @@
   "filename": "ThreatMetrix",
   "filenameformat" : "kab_threatmetrix_yyyymmdd_hh.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Hourly",

@@ -2,7 +2,7 @@
   "filename": "Account Fee Suspension",
   "filenameformat" : "kab_account_fee_suspension_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "HHMMSS",
   "availability": "Daily",

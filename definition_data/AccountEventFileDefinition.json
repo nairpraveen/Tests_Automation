@@ -2,7 +2,7 @@
   "filename": "Account Event",
   "filenameformat" : "kab_account_event_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "yyyymmdd",
   "timeformat": "hhmmss",
   "availability": "daily",

@@ -23,7 +23,7 @@ class scenario(object):
 
 	def seperator_value(def_file_name):
 		sep_value = pd.read_json(def_file_name)
-		sep_value = sep_value.feildseparator.ix[0]
+		sep_value = sep_value.fieldseparator.ix[0]
 		return sep_value
 
 

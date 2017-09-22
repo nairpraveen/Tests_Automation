@@ -2,7 +2,7 @@
   "filename": "Model Control file",
   "filenameformat" : "kab_model_control_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "feildseparator": "{",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "HHMMSS",
   "availability": "Daily",
