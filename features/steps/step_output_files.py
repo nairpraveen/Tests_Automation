@@ -13,11 +13,18 @@ def step_given_the_file(context):
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	assert_that(len(datafiles_names) > 0)
 
+@then('control file check')
+def step_control_file_check(context):
+	dir_file = dir_create()
+	values = dir_file.dir()
+	date = context.config.userdata.get("date")
+	masterfile_loc = context.config.userdata.get("masterfile_loc")
+	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
+	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
+
 
 @then('row count should match')
 def step_rows_count_should_match(context):
-	dir_file = dir_create()
-	values = dir_file.dir()
 	date = context.config.userdata.get("date")
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
@@ -45,4 +52,11 @@ def step_null_should_match(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	# assert_that("pass", equal_to(column_order))
+
+
+@then('empty rows')
+def step_empty_rows(context):
+	date = context.config.userdata.get("date")
+	masterfile_loc = context.config.userdata.get("masterfile_loc")
+	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
+	context.transformation.scenario_writing_to_files(datafiles_names, deffiles_names, control_data_file, control_def_file_loc)

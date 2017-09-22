@@ -2,7 +2,12 @@
 Feature: To check whether the columns exists,column names match,column order match and compare the row counts.
 
 @all
-Scenario: To check if the number of rows given in the control file match with the definition file.
+Scenario: Proper columns present
+   Given  a file
+    Then  control file check
+
+@all
+Scenario: Proper columns present
    Given  a file
     Then  row count should match
 
@@ -20,3 +25,8 @@ Scenario: To check if the order of the column names match in partner file and de
 Scenario: Check for null values
   Given   a file
   Then    null values are not allowed
+
+@all
+Scenario: Row counts match control file
+   Given  the file
+    Then  empty rows
