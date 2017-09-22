@@ -1,0 +1,115 @@
+{
+  "filename": "PortfolioProjectionFile",
+  "filenameformat" : "kab_portfolio_projection_yyyymmdd.txt",
+  "decimalseparator" : ".",
+  "fieldseparator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
+  "availability": "Daily",
+  "encrypted": "Yes",
+  "fullorincremental": "Incremental",
+  "description": "",
+  "column_names": "['AccountID', 'LoanID', 'ProjectionNumber', 'InterestRate', 'Amount', 'StatementDate', 'Principal', 'Interest', 'Fees']",
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "LoanID": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage loan identifier"
+    },
+    "ProjectionNumber": {
+      "order": "3",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Number of projection for the given loan.  A ProjectionNumber of 0 represents the current statemented period."
+    },
+    "InterestRate": {
+      "order": "4",
+      "dbtype": "DECIMAL(18,4)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Interest rate for the given projection"
+    },
+    "Amount": {
+      "order": "5",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Aggregate amount due shown on statement.  For ProjectionNumber 0 this represents current due + past due amounts and will reflect modifications to that amount such as early payment."
+    },
+    "StatementDate": {
+      "order": "6",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date statement will be generated for projection"
+    },
+   "Principal": {
+     "order": "7",
+     "dbtype": "DECIMAL(18,2)",
+     "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount to be applied to principal"
+    },
+    "Interest": {
+     "order": "8",
+     "dbtype": "DECIMAL(18,2)",
+     "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount to be applied to interest balance on loan"
+    },
+    "Fees": {
+     "order": "9",
+     "dbtype": "DECIMAL(18,2)",
+     "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Amount to be applied to fee balance on loan"
+    }
+      
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "filename": "Evaluation",
+  "filenameformat" : "kab_evaluation_yyyymmdd.txt",
+  "decimalseparator" : ".",
+  "fieldseparator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "availability": "Daily",
+  "encrypted": "No",
+  "fullorincremental": "Incremental",
+  "description": "",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "EvaluationID": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage evaluation identifier"
+    },
+    "CustomerTypeID": {
+      "order": "3",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Identifier denoting state of the customer"
+    },
+    "EvaluationReason": {
+      "order": "4",
+      "dbtype": "CHAR(2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Descriptor of what triggered the evaluation Values: •	NB (Nightly batch) •	CA (Customer added channel) •	CR (Channel Refreshed)"
+    },
+	"EvaluationResult": {
+      "order": "5",
+      "dbtype": "CHAR(1)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Descriptor of evaluation outcome Values: •	A (Accept) •	N (NotAccept) •	D (Decline) • E (Error)"
+    },
+    "EvaluationDate": {
+      "order": "6",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of evaluation"
+    },
+    "EvaluationTime": {
+      "order": "7",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Time of evaluation"
+    },
+    "PD": {
+      "order": "8",
+      "dbtype": "DECIMAL(18,4)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Probability of default assigned to the customer"
+    },
+	"ADB": {
+      "order": "9",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Average daily balance"
+    },
+    "RawLimit": {
+      "order": "10",
+      "dbtype": "DECIMAL(18,2)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Limit computed for the evaluation using Cluster and ADB"
+    },
+    "InterestRate": {
+      "order": "11",
+      "dbtype": "DECIMAL(18,4)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Interest rate calculated by the evaluation"
+    },
+    "Multiplier": {
+      "order": "12",
+      "dbtype": "DECIMAL(18,4)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Current K factor multiplier"
+    }
+	
+  }
+}
+  

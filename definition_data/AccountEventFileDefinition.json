@@ -1,0 +1,92 @@
+{
+  "filename": "Account Event",
+  "filenameformat" : "kab_account_event_yyyymmdd.txt",
+  "decimalseparator" : ".",
+  "fieldseparator": "{",
+  "dateformat": "yyyymmdd",
+  "timeformat": "hhmmss",
+  "availability": "daily",
+  "encrypted": "no",
+  "fullorincremental": "incremental",
+  "description": "comments",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "int",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "Kabbage account identifier"
+    },
+    "EventDate": {
+      "order": "2",
+      "dbtype": "int",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "Date of event capture in Kabbage platform"
+    },
+    "EventTime": {
+      "order": "3",
+      "dbtype": "int",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "Time of event capture in Kabbage platform"
+    },
+    "EventTypeID": {
+      "order": "4",
+      "dbtype": "int",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "Identifier which denotes the type of event fired"
+    },
+    "NewValue": {
+      "order": "5",
+      "dbtype": "nvarchar(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "For applicable events, the value captured"
+    },
+    "OldValue": {
+      "order": "6",
+      "dbtype": "nvarchar(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "For applicable events, the prior value before change"
+    },
+   "EventID": {
+     "order": "7",
+     "dbtype": "BIGINT",
+     "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "no",
+      "description": "Kabbage account identifier"
+    }
+  }
+}

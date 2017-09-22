@@ -1,0 +1,81 @@
+{
+  "filename": "TestFile",
+  "filenameformat" : "testfile_yyyymmdd.csv",
+  "decimalseparator" : ".",
+  "fieldseparator": ",",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
+  "availability": "Daily",
+  "encrypted": "Yes",
+  "fullorincremental": "Full",
+  "description": "",
+  "column_names": "['AccountID', 'LoanID', 'DisbursementDate', 'OriginalPurchaseAmount', 'CurrentBalance', 'OutstandingPrincipal', 'OutstandingFees', 'RemainingPayments', 'PaymentsApplied', 'CurrentDue', 'PastDue', 'PastDue1', 'PastDue2', 'PastDue3', 'PastDue4', 'PastDue5', 'PastDue6', 'PastDue7', 'CurrentDaysDelinquent', 'DateOfDelinquency', 'CurrentDelinquencyStatus', 'TotalDaysDelinquent', 'TotalLateFeeAmount', 'PayOffDate', 'ChargeOffDate', 'TotalAmountofLoanChargeOff', 'TotalAmountofLoanChargeOffFees', 'TotalAmountofLoanChargeOffInterest', 'TotalAmountofLoanChargeOffPrincipal', 'CurrentChargeOffBalance', 'BillingTableID', 'InterestRate', 'TermLengthMonths', 'LastPaymentDate', 'LastPaymentAmount', 'NextPaymentDate', 'NextPaymentAmount', 'InvoiceNumber', 'PortfolioTransactionId', 'LastDateDelinquent', 'NumberTimesDelinquent', 'WriteOffBalance', 'ClosedOnDate', 'OriginalMaturityDate', 'CurrentMaturityDate', 'LoanDelinquencyStartDate', 'CurrentDelinquentInstallments', 'TotalDelinquentPrincipal', 'TotalDelinquentInterest', 'NumberOfPaidInstallments', 'NextPrincipalAmount', 'NextInterestAmount', 'APR', 'ReversalDate']",
+  "columns": {
+    "accountid": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "loanaid": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Loan identifier"
+    },
+    "amount": {
+      "order": "3",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of loan origination"
+    },
+    "price": {
+      "order": "4",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of loan origination"
+    },
+    "id": {
+      "order": "5",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of loan origination"
+    },
+    "id": {
+      "order": "6",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Date of loan origination"
+    }
+  }
+}
