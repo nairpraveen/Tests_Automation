@@ -97,10 +97,12 @@ class scenario(object):
 			else:
 				line3 = {"Key": "Column order", "Result": "Passed"}
 
+			#checking null values
 			l4 = client_file_data
 			dff = pd.DataFrame(l4)
 			dff2=dff[dff.isnull().any(axis=1)]
 			if(dff.isnull().sum().sum()):
+				dff2.index=dff2.index+1
 				output1= dff.columns[dff.isnull().any().tolist()] +":"+ str(dff2.index.tolist())
 				line4 = {"Key": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
 			else:
