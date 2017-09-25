@@ -1,5 +1,5 @@
 import pandas as pd
-import os, fnmatch
+import os, fnmatch, re
 
 class retrieve_files(object):
 	"""docstring for Count"""
@@ -21,6 +21,20 @@ class retrieve_files(object):
 		return result
 
 
+	def find1(pattern, path):
+		result = []
+		for file in os.listdir(path):
+			if fnmatch.fnmatch(file, '*.txt'):
+				total_file_name = file
+				if re.search(str(pattern), total_file_name):
+					result.append(total_file_name)
+			elif fnmatch.fnmatch(file, '*.csv'):
+				total_file_name = file
+				if re.search(str(pattern), total_file_name):
+					result.append(total_file_name)
+		return result
+
+
 	def files(self, date, masterfile_loc):
 		masterfile = pd.read_json(masterfile_loc)
 		control_def_file_loc = masterfile.controlfile.ix[0]
@@ -33,7 +47,7 @@ class retrieve_files(object):
 		for i in range(0, len(text_files)):
 			a = text_files.index[i]
 			b = str(text_files[a]['filename'])
-			b1 = str(retrieve_files.find(date, "data/"+b)[0])
+			b1 = str(retrieve_files.find1(date, "data/"+b)[0])
 			c = text_files[a]['filedeffile']
 			datafiles_names.append("data/"+b+"/"+b1)
 			deffiles_names.append(c)

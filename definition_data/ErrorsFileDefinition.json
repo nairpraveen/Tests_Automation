@@ -1,50 +1,50 @@
 {
-  "filename": "KabbageTestDataFile",
-  "filenameformat" : "KabbageTestDataFile_yyyymmdd.txt",
+  "filename": "Errors file",
+  "filenameformat" : "kab_error_yyyymmdd.txt",
   "decimalseparator" : ".",
   "fieldseparator": "{",
-  "dateformat": "MMDDYYYY",
-  "timeformat": "HHMMSS",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "",
   "availability": "Daily",
   "encrypted": "No",
   "fullorincremental": "Incremental",
-  "description": "Master Test File",
+  "description": "",
 
   "columns": {
-    "ID": {
+    "AccountID": {
       "order": "1",
       "dbtype": "INT",
-      "minvalue" : "1",
+      "minvalue" : "",
       "maxvalue": "",
       "maxlength": "",
       "validvalues": "",
-      "allowedcharacters": "[0-9]",
+      "allowedcharacters": "",
       "allowempty": "No",
-      "description": "Employee ID"
+      "description": "Kabbage account identifier"
     },
-    "Fname": {
+    "ErrorDate": {
       "order": "2",
-      "dbtype": "VARCHAR(10)",
+      "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
       "maxlength": "",
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": "First Name"
+      "description": "Date of the error"
     },
-    "Lname": {
+    "ErrorTime": {
       "order": "3",
-      "dbtype": "VARCHAR(10)",
+      "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
       "maxlength": "",
       "validvalues": "",
       "allowedcharacters": "",
-      "allowempty": "Yes",
-      "description": "Last Name"
+      "allowempty": "No",
+      "description": "Time of error"
     },
-    "Age": {
+    "ErrorID": {
       "order": "4",
       "dbtype": "INT",
       "minvalue" : "",
@@ -53,43 +53,10 @@
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": ""
+      "description": "Identifier of error"
     },
-    "Gender": {
+	 "ProcessID": {
       "order": "5",
-      "dbtype": "CHAR(1)",
-      "minvalue": "",
-      "maxvalue": "",
-      "maxlength": "",
-      "validvalues": "{M|F}",
-      "allowedcharacters": "",
-      "allowempty": "No",
-      "description": ""
-    },
-    "StartDate": {
-      "order": "6",
-      "dbtype": "DATE",
-      "minvalue": "",
-      "maxvalue": "",
-      "maxlength": "",
-      "validvalues": "",
-      "allowedcharacters": "",
-      "allowempty": "Yes",
-      "description": ""
-    },
-   "Dept": {
-      "order": "7",
-      "dbtype": "CHAR(2)",
-      "minvalue" : "",
-      "maxvalue": "",
-      "maxlength": "",
-      "validvalues": "",
-      "allowedcharacters": "",
-      "allowempty": "No",
-      "description": ""
-    },
-   "Salary": {
-      "order": "8",
       "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
@@ -97,7 +64,52 @@
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": ""
+      "description": "Identifier of process that generated the error"
+    },
+    "ErrorTypeID": {
+      "order": "6",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Identifier of type of error generated"
+    },
+    "Comment": {
+      "order": "7",
+      "dbtype": "NVARCHAR(1000)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Additional information on error"
+    },
+    "ExternalSourceID": {
+      "order": "8",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "If error relates to external source, Kabbage identifier of source"
+    },
+	 "ClosedBy": {
+      "order": "9",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "User that closed the application exception or user flag"
     }
   }
 }
+  

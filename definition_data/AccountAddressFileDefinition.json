@@ -1,0 +1,126 @@
+{
+  "filename": "Account Address data file",
+  "filenameformat" : "kab_account_address_yyyymmdd.txt",
+  "decimalseparator" : ".",
+  "fieldseparator": "{",
+  "dateformat": "YYYYMMDD",
+  "timeformat": "HHMMSS",
+  "availability": "Daily",
+  "encrypted": "No",
+  "fullorincremental": "Full",
+  "description": "",
+
+  "columns": {
+    "AccountID": {
+      "order": "1",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Kabbage account identifier"
+    },
+    "AddressTypeID": {
+      "order": "2",
+      "dbtype": "INT",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Type of address provided"
+    },
+    "Address1": {
+      "order": "3",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "First line of provided address"
+    },
+    "Address2": {
+      "order": "4",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Second line of provided address"
+    },
+	  "City": {
+      "order": "5",
+      "dbtype": "NVARCHAR(100)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "The city of provided address"
+    },
+    "PostalCode": {
+      "order": "6",
+      "dbtype": "NVARCHAR(20)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": "Postal code of provided address"
+    },
+    "HouseName": {
+      "order": "7",
+      "dbtype": "NVARCHAR(255)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "House name"
+    },
+    "HouseNumber": {
+      "order": "8",
+      "dbtype": "NVARCHAR(40)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "House number"
+    },
+	"FlatNumber": {
+      "order": "9",
+      "dbtype": "NVARCHAR(40)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "Flat number"
+    },
+    "County": {
+      "order": "10",
+      "dbtype": "NVARCHAR(40)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "Yes",
+      "description": "County"
+    }
+  }
+}
+  

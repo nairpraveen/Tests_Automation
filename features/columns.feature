@@ -12,12 +12,12 @@ Scenario: Proper columns present
     Then  row count should match
 
 @all
-Scenario: To check if the column names in partner file and definition file match.
+Scenario: To check if the column names in partner file and definition file match
    Given  a file
     Then  column names should match
 
 @all
-Scenario: To check if the order of the column names match in partner file and definition file.
+Scenario: To check if the order of the column names match in partner file and definition file
    Given  a file
     Then  column order should match
 
@@ -27,6 +27,11 @@ Scenario: Check for null values
   Then    null values are not allowed
 
 @all
-Scenario: Row counts match control file
+Scenario: check for empty rows
    Given  a file
     Then  empty rows
+
+@all
+Scenario: data type check for columns in a file
+   Given  a file
+    Then  data type check

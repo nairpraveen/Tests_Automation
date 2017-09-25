@@ -24,6 +24,7 @@ class scenario(object):
 
 
 	def seperator_value(def_file_name):
+
 		sep_value = pd.read_json(def_file_name)
 		sep_value = sep_value.fieldseparator.ix[0]
 		return sep_value
@@ -59,9 +60,9 @@ class scenario(object):
 				# row count validation
 
 				if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-					line1 = {"Key": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
+					line1 = {"Test name": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
 				else:
-					line1 = {"Key": "Rows count", "Result": "Passed"}
+					line1 = {"Test name": "Rows count", "Result": "Passed"}
 
 				# column names validation
 
@@ -69,16 +70,15 @@ class scenario(object):
 				l2 = (list(json_def_data["columns"].index))
 
 				if len(set(l1).intersection(l2)) == len(l2) :
-					line2 = {"Key": "Column names", "Result": "Passed"}
+					line2 = {"Test name": "Column names", "Result": "Passed"}
 				else:
-					line2 = {"Key": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
+					line2 = {"Test name": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
 
 				# column order validation
 
 				l2 = (json_def_data["columns"])
 				l2_values = (list(json_def_data["columns"].index))
 
-				temp1 = []
 				def_col, pass_list, fail_list = {}, {}, {}
 
 				for index, col in enumerate(l2_values):
@@ -97,9 +97,9 @@ class scenario(object):
 							fail_list[i] = str(def_col[i])
 						
 				if len(fail_list) != 0:
-					line3 = {"Key": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
+					line3 = {"Test name": "Column order", "Result": "Failed", "Column not in order": list(fail_list.values())}
 				else:
-					line3 = {"Key": "Column order", "Result": "Passed"}
+					line3 = {"Test name": "Column order", "Result": "Passed"}
 
 
 				#checking null values
@@ -110,9 +110,9 @@ class scenario(object):
 				if(dff.isnull().sum().sum()):
 					dff2.index=dff2.index+1
 					output1= dff.columns[dff.isnull().any().tolist()] +":"+ str(dff2.index.tolist())
-					line4 = {"Key": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
+					line4 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
 				else:
-					line4 = {"Key": "Check for nulls", "Result": "Passed"}
+					line4 = {"Test name": "Check for nulls", "Result": "Passed"}
 
 				# checking the empty rows
 
@@ -137,13 +137,45 @@ class scenario(object):
 						empty_rows_list.append("The file has empty row at "+str(key[i]))
 
 				if len(empty_rows_list) != 0:
-					line5 = {"Key": "Empty Rows", "Result": "Failed", "Output": empty_rows_list}
+					line5 = {"Test name": "Empty Rows", "Result": "Failed", "Output": empty_rows_list}
 				else:
-					line5 = {"Key": "Empty Rows", "Result": "Passed"}
+					line5 = {"Test name": "Empty Rows", "Result": "Passed"}
+
+				# check for the data-types
+
+				data_file_columns = client_file_data.columns
+
+				datatype_col = {}
+
+				result_fail_list, column_pass_list, column_fail_list = [], [], []
+
+				datatype_col_rename = {'INT' : 'int64', 'int' : 'int64', 'BIGINT' : 'int64', 'SMALLINT' : 'int64', 'NVARCHAR(50)' : 'str', 'CHAR(8)' : 'str', 'DECIMAL(18,2)' : 'float64' , 'BIT' : 'bool_',  'DECIMAL(18,4)' : 'float64', 'CHAR(2)' : 'str', 'VARCHAR(10)' : 'str', 'CHAR(1)' : 'str', 'DATE' : 'date', 'NVARCHAR(3)' : 'str', 'NVARCHAR(500)' : 'str', 'NVARCHAR(100)' : 'str', 'NVARCHAR(255)' : 'str', 'nvarchar(255)' : 'str', 'NVARCHAR(25)' : 'str', 'NVARCHAR(3000)' : 'str', 'NVARCHAR(40)' : 'str', 'NVARCHAR(20)' : 'str'}
+
+				for index, col in enumerate(l2_values):
+					datatype_col[col] = l2[col]['dbtype']
+					datatype_col.update(datatype_col)
+
+				dict3 = {k:datatype_col_rename[v] for k,v in datatype_col.items()}
+				for column in data_file_columns:
+					if column in dict3.keys():
+						for val in client_file_data[column]:
+							if str(val) == "nan" or type(val).__name__ == dict3[column]:
+								column_pass_list.append(column)
+							else:
+								column_fail_list.append(column)
+								result_fail_list.append("the value "+ str(val) + " at row "+ str(i) + " in column "+str(column)+" doesn't match with datatype "+datatype_col[column])
+							i = i + 1
+
+				if len(set(column_pass_list)) == len(dict3.keys()):
+					line7 = {"Test name": "Data type", "Result": "Passed"}
+				elif len(client_file_data) == 0:
+					line7 = {"Test name": "Data type", "Result": "Failed", "Output": "File doesn't have any data"}
+				else:
+					line7 = {"Test name": "Data type", "Result": "Failed", "Output": result_fail_list}
 					
 				# copying the file to passed or fail folder
 
-				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed":
+				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line7["Result"] == "Passed":
 					with open(text_file_pass+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
@@ -152,10 +184,9 @@ class scenario(object):
 						for line in open(client_file):
 							f1.write(line)
 
-
 				# writing the output to the result file
 
-				final_lines_to_file = {"Scenario1" : line1, "Scenario2" : line2, "Scenario3" : line3, "Scenario4" : line4, "Scenario5" : line5}
+				final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3, "Test-4" : line4, "Test-5" : line5, "Test-7" : line7}
 
 				# creating a json output file in result folder
 

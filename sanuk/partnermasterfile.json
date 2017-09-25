@@ -2,32 +2,77 @@
  "partner": "santander",
   "datafilelocation" : "data",
   "definitionfilelocation" : "data/JSONDefinition",
-  "controlfile": "data/JSONDefinition/ControlFileDefinition.json",
+  "controlfile": "definition_data/ControlFileDefinition.json",
   "files": {
     "file1":
     {
       "filename": "PortfolioTransactionFile",
-      "filedeffile": "data/JSONDefinition/PortfolioTransactionFileDefinition.json"
+      "filedeffile": "definition_data/PortfolioTransactionFileDefinition.json"
     },
     "file2":
     {
       "filename": "PortfolioFile",
-      "filedeffile": "data/JSONDefinition/PortfolioFileDefinition.json"
+      "filedeffile": "definition_data/PortfolioFileDefinition.json"
     },
     "file3":
     {
       "filename": "PortfolioProjectionFile",
-      "filedeffile": "data/JSONDefinition/PortfolioProjectionFileDefinition.json"
+      "filedeffile": "definition_data/PortfolioProjectionFileDefinition.json"
     },
     "file4":
     {
-      "filename": "KabbageTestDataFile",
-      "filedeffile": "data/JSONDefinition/KabbageTestFileDefinition.json"
+      "filename": "EvaluationFile",
+      "filedeffile": "definition_data/EvaluationFileDefinition.json"
     },
-    "file5":{
-      "filename":"TestCSV",
-      "filedeffile":"data/JSONDefinition/test.json"
-
+    "file6":
+    {
+      "filename": "ComplaintsFile",
+      "filedeffile": "definition_data/ComplaintsFileDefinition.json"
+    },
+    "file7":
+    {
+      "filename": "EvaluationScoreFile",
+      "filedeffile": "definition_data/EvaluationScoreFileDefinition.json"
+    },
+    "file8":
+    {
+      "filename": "ExperianBankVerificationFile",
+      "filedeffile": "definition_data/ExperianBankVerificationFileDefinition.json"
+    },
+    "file9":
+    {
+      "filename": "AccountConsentFile",
+      "filedeffile": "definition_data/AccountConsentFileDefinition.json"
+    },
+    "file10":
+    {
+      "filename": "AccountEventFile",
+      "filedeffile": "definition_data/AccountEventFileDefinition.json"
+    },
+    "file11":
+    {
+      "filename": "AccountFeeSuspensionFile",
+      "filedeffile": "definition_data/AccountFeeSuspensionFileDefinition.json"
+    },
+    "file12":
+    {
+      "filename": "AccountPromiseToPayFile",
+      "filedeffile": "definition_data/AccountPromiseToPayFileDefinition.json"
+    },
+    "file13":
+    {
+      "filename": "ExternalSourcesFile",
+      "filedeffile": "definition_data/ExternalSourcesFileDefinition.json"
+    },
+    "file14":
+    {
+      "filename": "AccountAddressFile",
+      "filedeffile": "definition_data/AccountAddressFileDefinition.json"
+    },
+    "file15":
+    {
+      "filename": "AccountPhoneFile",
+      "filedeffile": "definition_data/AccountPhoneFileDefinition.json"
     }
   }
 }
