@@ -4,10 +4,13 @@
   "definitionfilelocation" : "definition_data",
   "controlfile": "definition_data/ControlFileDefinition.json",
 
+
   "files": {
     "file1":{
       "filename":"TestCSV",
       "filedeffile":"definition_data/SQLTestDefinition.json"
+
+ 
     }
 
   }
