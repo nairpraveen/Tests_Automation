@@ -37,9 +37,11 @@ def step_column_names_should_match(context):
 def step_column_order_should_match(context):
 	pass
 
+
 @then('null values are not allowed')
 def step_null_should_match(context):
 	pass
+
 
 @then('empty rows')
 def step_empty_rows(context):
