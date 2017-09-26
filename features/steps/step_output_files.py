@@ -3,6 +3,8 @@ from hamcrest    import assert_that, equal_to
 from files import retrieve_files
 from transformation import scenario
 from dir_file import dir_create
+from connect import connection
+
 
 @given('a file')
 def step_given_the_file(context):
@@ -10,8 +12,10 @@ def step_given_the_file(context):
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
 	context.files = retrieve_files()
 	context.transformation = scenario()
+	context.connect=connection()
 	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
 	assert_that(len(datafiles_names) > 0)
+
 
 @then('control file check')
 def step_control_file_check(context):
@@ -46,6 +50,11 @@ def step_null_should_match(context):
 @then('empty rows')
 def step_empty_rows(context):
 	pass
+
+
+@then('query result matched with partner file result')
+def step_sql_test(context):
+	pass	
 
 
 @then('data type check')

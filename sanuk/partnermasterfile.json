@@ -1,7 +1,7 @@
 {
  "partner": "santander",
   "datafilelocation" : "data",
-  "definitionfilelocation" : "data/JSONDefinition",
+  "definitionfilelocation" : "definition_data",
   "controlfile": "definition_data/ControlFileDefinition.json",
   "files": {
     "file1":
@@ -73,6 +73,10 @@
     {
       "filename": "AccountPhoneFile",
       "filedeffile": "definition_data/AccountPhoneFileDefinition.json"
+    },
+    "file16":{
+      "filename":"TestCSV",
+      "filedeffile":"definition_data/SQLTestDefinition.json"
     }
   }
 }

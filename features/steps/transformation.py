@@ -1,10 +1,14 @@
+from features.steps.dir_file import dir_create
+from datetime import date
+from pprint import pprint
 import pandas as pd
 import glob, os, datetime, re
-from dir_file import dir_create
-from datetime import date
 import json
 import numpy as np
-from pprint import pprint
+import pypyodbc
+
+from features.steps.connect import connection
+
 
 class scenario(object):
 	"""docstring for Count"""
@@ -49,6 +53,7 @@ class scenario(object):
 			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Pass/"
 			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Failed/"
 			text_file_result = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/"+client_file_name_split+".json"
+
 
 			# checking whether the partner file is present in Control File
 			
@@ -141,6 +146,43 @@ class scenario(object):
 				else:
 					line5 = {"Test name": "Empty Rows", "Result": "Passed"}
 
+				#aggregate_function check
+
+				if(client_file_name=="test_20170504.csv"):
+
+					def_agg_col = {}
+					def_match={}
+					data_match={}
+					pass_list1=[]
+					fail_list1=[]
+
+					for index, col in enumerate(l2_values):
+						def_agg_col[col] = l2[col]['aggregate_function']
+						def_agg_col.update(def_agg_col)
+
+					for index, col in enumerate(l2_values):
+						query = l2[col]['sql_query']
+						def_match[col]=connection.makeconnection(self, query)
+						def_match.update(def_match)
+					print(def_match)
+
+					for col in client_file_data.columns:
+						data_match[col]=len(client_file_data[col])
+						data_match.update(data_match)
+					print(data_match)
+
+					for key in data_match.keys():
+						if data_match[key]==def_match[key]:
+							pass_list1.append("matched")
+						else:
+							fail_list1.append("not matched")
+					if len(pass_list1)==len(data_match.keys()):
+						line6={"Test name": "Summary Data check", "Result": "Passed"}
+					else:
+						line6={"Test name": "Summary Data check", "Result": "Failed"}
+				else:
+					line6={"Test name": "Summary Data check", "Result": "No aggregation function is defined for this file"}
+
 				# check for the data-types
 
 				data_file_columns = client_file_data.columns
@@ -175,7 +217,7 @@ class scenario(object):
 					
 				# copying the file to passed or fail folder
 
-				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line7["Result"] == "Passed":
+				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line6["Result"] == "Passed"and line7["Result"] == "Passed":
 					with open(text_file_pass+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
@@ -186,7 +228,7 @@ class scenario(object):
 
 				# writing the output to the result file
 
-				final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3, "Test-4" : line4, "Test-5" : line5, "Test-7" : line7}
+				final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3, "Test-4" : line4, "Test-5" : line5, "Test-6" : line6, "Test-7" : line7}
 
 				# creating a json output file in result folder
 

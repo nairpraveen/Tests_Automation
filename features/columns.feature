@@ -32,6 +32,11 @@ Scenario: check for empty rows
     Then  empty rows
 
 @all
+Scenario: SQL and python comparison
+   Given a file
+     Then  query result matched with partner file result
+
+@all
 Scenario: data type check for columns in a file
    Given  a file
     Then  data type check
