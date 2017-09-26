@@ -1,0 +1,5 @@
+FileType{NumberOfFiles
+Consumer{16
+Director{20
+Equifax{9
+Limited{9
