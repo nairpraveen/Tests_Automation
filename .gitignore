@@ -8,6 +8,7 @@ __pycache__/
 
 
 data/
+defintion_data/
 *.txt
 *.json
 *.csv
