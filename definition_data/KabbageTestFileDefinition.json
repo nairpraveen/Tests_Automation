@@ -53,7 +53,8 @@
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": ""
+      "description": "",
+      "sql_query":"select count(age) from KabbageTestDataFile_20170504.txt"
     },
     "Gender": {
       "order": "5",

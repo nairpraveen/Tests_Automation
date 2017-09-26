@@ -21,7 +21,6 @@
       "allowedcharacters": "",
       "allowempty": "No",
       "description": "Kabbage account identifier"
-      "sql_query":"select count("
     },
     "loanaid": {
       "order": "2",
