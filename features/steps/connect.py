@@ -3,8 +3,6 @@ import pypyodbc
 class connection(object):
     def __init__(self):
         self.fn = None
-        #print("hi")
-
 
     def makeconnection(self,query):
         connect = pypyodbc.connect("Driver={SQL Server Native Client 11.0};"
@@ -12,7 +10,6 @@ class connection(object):
                                            "Database=sample;"
                                            "Trusted_Connection=yes;")
 
-        #print("hi")
         cursor = connect.cursor()
         cursor.execute(query)
         result=cursor.fetchone()

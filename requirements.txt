@@ -1,0 +1,15 @@
+
+# behave
+behave
+
+# hamcrest
+hamcrest
+
+# pymssql
+git+https://github.com/pymssql/pymssql.git
+
+# pandas
+pandas
+
+# pypyodbc
+pypyodbc
