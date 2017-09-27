@@ -6,6 +6,7 @@ import glob, os, datetime, re
 import json
 import numpy as np
 import pypyodbc
+import re
 
 from features.steps.connect import connection
 
@@ -164,12 +165,12 @@ class scenario(object):
 						query = l2[col]['sql_query']
 						def_match[col]=connection.makeconnection(self, query)
 						def_match.update(def_match)
-					print(def_match)
+					#print(def_match)
 
 					for col in client_file_data.columns:
 						data_match[col]=len(client_file_data[col])
 						data_match.update(data_match)
-					print(data_match)
+					#print(data_match)
 
 					for key in data_match.keys():
 						if data_match[key]==def_match[key]:
@@ -191,7 +192,7 @@ class scenario(object):
 
 				result_fail_list, column_pass_list, column_fail_list = [], [], []
 
-				datatype_col_rename = {'INT' : 'int64', 'int' : 'int64', 'BIGINT' : 'int64', 'SMALLINT' : 'int64', 'NVARCHAR(50)' : 'str', 'CHAR(8)' : 'str', 'DECIMAL(18,2)' : 'float64' , 'BIT' : 'bool_',  'DECIMAL(18,4)' : 'float64', 'CHAR(2)' : 'str', 'VARCHAR(10)' : 'str', 'CHAR(1)' : 'str', 'DATE' : 'date', 'NVARCHAR(3)' : 'str', 'NVARCHAR(500)' : 'str', 'NVARCHAR(100)' : 'str', 'NVARCHAR(255)' : 'str', 'nvarchar(255)' : 'str', 'NVARCHAR(25)' : 'str', 'NVARCHAR(3000)' : 'str', 'NVARCHAR(40)' : 'str', 'NVARCHAR(20)' : 'str'}
+				datatype_col_rename = {'INT' : 'int64', 'int' : 'int64', 'BIGINT' : 'int64', 'SMALLINT' : 'int64', 'NVARCHAR(50)' : 'str','VARCHAR(50)':'str', 'CHAR(8)' : 'str', 'DECIMAL(18,2)' : 'float64' , 'BIT' : 'bool_',  'DECIMAL(18,4)' : 'float64', 'CHAR(2)' : 'str', 'VARCHAR(10)' : 'str', 'CHAR(1)' : 'str', 'DATE' : 'date', 'NVARCHAR(3)' : 'str', 'NVARCHAR(500)' : 'str', 'NVARCHAR(100)' : 'str', 'NVARCHAR(255)' : 'str', 'nvarchar(255)' : 'str', 'NVARCHAR(25)' : 'str', 'NVARCHAR(3000)' : 'str', 'NVARCHAR(40)' : 'str', 'NVARCHAR(20)' : 'str'}
 
 				for index, col in enumerate(l2_values):
 					datatype_col[col] = l2[col]['dbtype']
@@ -214,10 +215,48 @@ class scenario(object):
 					line7 = {"Test name": "Data type", "Result": "Failed", "Output": "File doesn't have any data"}
 				else:
 					line7 = {"Test name": "Data type", "Result": "Failed", "Output": result_fail_list}
+
+				#check for special_characters
+				line8={}
+				pass_list3=[]
+				fail_list3=[]
+				result_fail_list3=[]
+				result_pass_list3=[]
+				if (client_file_name == "test_20170504.csv"):
+					for column in data_file_columns:
+						print(client_file_data.columns.values)
+						p=1
+						for val in client_file_data[column]:
+							if any(char in str(val) for char in ("~", "%", "*", "+", "&","\"","~","`","!","@","#","$","^","(",")","_","-","=","[","]","{","}",":",">",";","'",",","<","/","?")):
+								fail_list3.append(column)
+								result_fail_list3.append("special character " + str(val)+ " is found at row " + str(p) + " in " +  str(column))
+							else:
+								pass_list3.append(column)
+								#result_pass_list3.append("match"+str(val))
+							p = p + 1
+
+
+					if len(pass_list3)==len(client_file_data):
+						line8={"Test name":"Special_characters","Result":"Passed","Output":result_pass_list3}
+					else:
+						line8={"Test name":"Special_characters","Result":"Failed","Output":result_fail_list3}
+				else:
+					line8= {"Test name": "Special_characters",
+							 "Result": "No special characters are found in this file"}
+
+
+
+
+
+
+
+
+
+
 					
 				# copying the file to passed or fail folder
 
-				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line6["Result"] == "Passed"and line7["Result"] == "Passed":
+				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line6["Result"] == "Passed"and line7["Result"] == "Passed" and line8["Result"]=="Passed":
 					with open(text_file_pass+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
@@ -228,7 +267,7 @@ class scenario(object):
 
 				# writing the output to the result file
 
-				final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3, "Test-4" : line4, "Test-5" : line5, "Test-6" : line6, "Test-7" : line7}
+				final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3, "Test-4" : line4, "Test-5" : line5, "Test-6" : line6, "Test-7" : line7,"Test-8":line8}
 
 				# creating a json output file in result folder
 

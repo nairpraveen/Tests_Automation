@@ -60,3 +60,7 @@ def step_sql_test(context):
 @then('data type check')
 def step_data_type_check(context):
 	pass
+
+@then ('special characters')
+def step_special_characters(context):
+	pass
