@@ -244,16 +244,6 @@ class scenario(object):
 					line8= {"Test name": "Special_characters",
 							 "Result": "No special characters are found in this file"}
 
-
-
-
-
-
-
-
-
-
-					
 				# copying the file to passed or fail folder
 
 				if line1["Result"] == "Passed" and line2["Result"] == "Passed" and line3["Result"] == "Passed" and line4["Result"] == "Passed" and line5["Result"] == "Passed" and line6["Result"] == "Passed"and line7["Result"] == "Passed" and line8["Result"]=="Passed":
