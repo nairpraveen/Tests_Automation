@@ -2,6 +2,7 @@ import pandas as pd
 import glob, os, datetime
 from dir_file import dir_create
 from datetime import date
+# from file_comp import file_comp
 import json
 
 class scenario(object):
@@ -27,13 +28,16 @@ class scenario(object):
 		return sep_value
 
 
-	def scenario_writing_to_files(self, datafiles_names, deffiles_names, control_file, control_def_file_loc):
+	def scenario_writing_to_files(self, today_now, resultsfilelocation, datafiles_names, deffiles_names, control_file, control_def_file_loc):
 
 		control_file_sep_value = scenario.seperator_value(control_def_file_loc)
 		control_file = scenario.control_file_values(control_file, control_file_sep_value)
 		today = date.today()
 
 		final_lines_to_file = {}
+
+		text_file_summary_result = resultsfilelocation+"Summary_Result"+"/"+today_now+"/"+"summary_result.json"
+		total_Summary_line = {}
 
 		for i in range(0, len(datafiles_names)):
 			client_file = datafiles_names[i]
@@ -46,16 +50,28 @@ class scenario(object):
 
 			client_file_name_split = client_file_name[-len(client_file_name):-4]
 
-			text_file_pass = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Pass/"
-			text_file_fail = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Failed/"
-			text_file_result = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')+"/"+"Result/"+client_file_name_split+".json"
-
+			text_file_pass = resultsfilelocation+today_now+"/"+"Pass/"
+			text_file_fail = resultsfilelocation+today_now+"/"+"Failed/"
+			text_file_result = resultsfilelocation+today_now+"/"+"Result/"+client_file_name_split+".json"
+			
 			# row count validation
 
-			if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				line1 = {"Test": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
+			# if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
+			# 	line1 = {"Test": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
+			# else:
+			# 	line1 = {"Test": "Rows count", "Result": "Passed"}
+
+			#checking null values
+
+			l4 = client_file_data
+			dff = pd.DataFrame(l4)
+			dff2=dff[dff.isnull().any(axis=1)]
+			if(dff.isnull().sum().sum()):
+				dff2.index=dff2.index+1
+				output1= dff.columns[dff.isnull().any().tolist()] +":"+ str(dff2.index.tolist())
+				line1 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found","Null values found in":output1.tolist()}
 			else:
-				line1 = {"Test": "Rows count", "Result": "Passed"}
+				line1 = {"Test name": "Check for nulls", "Result": "Passed"}
 
 			# column names validation
 
@@ -63,9 +79,9 @@ class scenario(object):
 			l2 = (list(json_def_data["columns"].index))
 
 			if len(set(l1).intersection(l2)) == len(l2) :
-				line2 = {"Test": "Column names", "Result": "Passed"}
+				line2 = {"Test name": "Column names", "Result": "Passed"}
 			else:
-				line2 = {"Test": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
+				line2 = {"Test name": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
 
 			# column order validation
 
@@ -90,9 +106,9 @@ class scenario(object):
 					else:
 						fail_list[i] = str(def_col[i])
 			if len(fail_list) != 0:
-				line3 = {"Test": "Column order", "Result": "Failed", "Output": "The expected column order is "+str(list(def_col.values()))+" but we have "+str(list(fail_list.values()))}
+				line3 = {"Test name": "Column order", "Result": "Failed", "Output": "The expected column order is "+str(list(def_col.values()))+" but we have "+str(list(fail_list.values()))}
 			else:
-				line3 = {"Test": "Column order", "Result": "Passed"}
+				line3 = {"Test name": "Column order", "Result": "Passed"}
 
 			# copying the file to passed or fail folder
 
@@ -100,14 +116,19 @@ class scenario(object):
 				with open(text_file_pass+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
+				Summary_line = {"FileName" : client_file_name, "TimeStamp" : today_now, "Result" : "Pass"}
+
 			else:
 				with open(text_file_fail+client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
+				Summary_line = {"FileName" : client_file_name, "TimeStamp" : today_now, "Result" : "Failed"}
+
+			total_Summary_line[client_file_name] = Summary_line
 
 			# writing the output to the result file
 
-			final_lines_to_file = {"Scenario1":line1, "Scenario2":line2, "Scenario3":line3}
+			final_lines_to_file = {"Test-1" : line1, "Test-2" : line2, "Test-3" : line3}
 
 			# creating a json output file in result folder
 
@@ -115,5 +136,11 @@ class scenario(object):
 				json.dump(final_lines_to_file, output, indent=2)
 			output.close()
 
-		return final_lines_to_file
+		# writing to Summary result file
+
+		with open(text_file_summary_result, 'a') as f2:
+			json.dump(total_Summary_line, f2, indent=3)
+		f2.close()
+
+		return text_file_summary_result, final_lines_to_file
 	
