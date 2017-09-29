@@ -1,5 +1,6 @@
 import pandas as pd
 import os, fnmatch
+from dir_file import dir_create
 
 class retrieve_files(object):
 	"""docstring for Count"""
@@ -21,10 +22,9 @@ class retrieve_files(object):
 		return result
 
 
-	def files(self, date, masterfile_loc):
+	def files(self, date, masterfile_loc,resultsfilelocation):
 		masterfile = pd.read_json(masterfile_loc)
 		control_def_file_loc = masterfile.controlfile.ix[0]
-		resultsfilelocation = masterfile.resultsfilelocation.ix[0]
 		controlfile = pd.read_json(control_def_file_loc)
 		controlfile_folder = controlfile.filename.ix[0]
 		control_data_file = "data/"+controlfile_folder+"/"+retrieve_files.find(date, "data/"+controlfile_folder)[0]
@@ -38,4 +38,4 @@ class retrieve_files(object):
 			c = text_files[a]['filedeffile']
 			datafiles_names.append("data/"+b+"/"+b1)
 			deffiles_names.append(c)
-		return resultsfilelocation, datafiles_names, deffiles_names, control_data_file, control_def_file_loc
+		return  datafiles_names, deffiles_names, control_data_file, control_def_file_loc

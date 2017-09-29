@@ -10,20 +10,23 @@ from dir_file import dir_create
 def step_given_the_file(context):
 	date = context.config.userdata.get("date")
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
+	resultsfilelocation=context.config.userdata.get("resultsfilelocation")
 	context.files = retrieve_files()
 	context.transformation = scenario()
-	resultsfilelocation, datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
+	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc,resultsfilelocation)
 	assert_that(len(datafiles_names) > 0)
 
 
-@then('row count should match')
-def step_rows_count_should_match(context):
+@then('check null values')
+def step_check_null_values(context):
 	date = context.config.userdata.get("date")
 	masterfile_loc = context.config.userdata.get("masterfile_loc")
-	resultsfilelocation, datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc)
+	resultsfilelocation=context.config.userdata.get("resultsfilelocation")
+	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc,resultsfilelocation)
 	dir_file = dir_create()
 	values = dir_file.dir(resultsfilelocation)
-	text_file_summary_result, final_lines_to_file = context.transformation.scenario_writing_to_files(values[0], resultsfilelocation, datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
+	text_file_summary_result, final_lines_to_file = context.transformation.scenario_writing_to_files(values[0],resultsfilelocation,datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
+	#print(text_file_summary_result)
 	file_comp = f_comp()
 	comparison = file_comp.comp(text_file_summary_result, resultsfilelocation)
 

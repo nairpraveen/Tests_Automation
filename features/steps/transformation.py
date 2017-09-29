@@ -51,18 +51,13 @@ class scenario(object):
 			text_file_pass = resultsfilelocation+today_now+"/"+"Pass/"
 			text_file_fail = resultsfilelocation+today_now+"/"+"Failed/"
 			text_file_result = resultsfilelocation+today_now+"/"+"Result/"+client_file_name_split+".json"
+			#print(text_file_pass)
 
 			if client_file_name in list(control_file.index):
 
 				client_file_data = pd.read_csv(client_file, sep= sep_value)
 				json_def_data = pd.read_json(json_def)
 				
-				# row count validation
-
-				# if int(control_file.xs(client_file_name)) != int(len(client_file_data)):
-				# 	line1 = {"Test": "Rows count", "Result": "Failed", "Output": "The partner file has "+str(int(control_file.xs(client_file_name)))+" rows but control file has "+str(int(len(client_file_data)))}
-				# else:
-				# 	line1 = {"Test": "Rows count", "Result": "Passed"}
 
 				#checking null values
 

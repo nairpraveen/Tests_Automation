@@ -1,10 +1,10 @@
 
-Feature: To check whether the columns exists,column names match,column order match and compare the row counts.
+Feature: To check the null values,column names match,column order match.
 
 @all
-Scenario: To check if the number of rows given in the control file match with the definition file.
+Scenario: To check if there are any null values.
    Given  a file
-    Then  row count should match
+    Then  check null values
 
 @all
 Scenario: To check if the column names in partner file and definition file match.
