@@ -7,4 +7,8 @@ __pycache__/
 *$py.class
 
 
-
+data/
+defintion_data/
+*.txt
+*.json
+*.csv

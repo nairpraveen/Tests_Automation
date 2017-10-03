@@ -24,59 +24,60 @@
       "filename": "EvaluationFile",
       "filedeffile": "definition_data/EvaluationFileDefinition.json"
     },
-    "file6":
+    "file5":
     {
       "filename": "ComplaintsFile",
       "filedeffile": "definition_data/ComplaintsFileDefinition.json"
     },
-    "file7":
+    "file6":
     {
       "filename": "EvaluationScoreFile",
       "filedeffile": "definition_data/EvaluationScoreFileDefinition.json"
     },
-    "file8":
+    "file7":
     {
       "filename": "ExperianBankVerificationFile",
       "filedeffile": "definition_data/ExperianBankVerificationFileDefinition.json"
     },
-    "file9":
+    "file8":
     {
       "filename": "AccountConsentFile",
       "filedeffile": "definition_data/AccountConsentFileDefinition.json"
     },
-    "file10":
+    "file9":
     {
       "filename": "AccountEventFile",
       "filedeffile": "definition_data/AccountEventFileDefinition.json"
     },
-    "file11":
+    "file10":
     {
       "filename": "AccountFeeSuspensionFile",
       "filedeffile": "definition_data/AccountFeeSuspensionFileDefinition.json"
     },
-    "file12":
+    "file11":
     {
       "filename": "AccountPromiseToPayFile",
       "filedeffile": "definition_data/AccountPromiseToPayFileDefinition.json"
     },
-    "file13":
+    "file12":
     {
       "filename": "ExternalSourcesFile",
       "filedeffile": "definition_data/ExternalSourcesFileDefinition.json"
     },
-    "file14":
+    "file13":
     {
       "filename": "AccountAddressFile",
       "filedeffile": "definition_data/AccountAddressFileDefinition.json"
     },
-    "file15":
+    "file14":
     {
       "filename": "AccountPhoneFile",
       "filedeffile": "definition_data/AccountPhoneFileDefinition.json"
     },
-    "file16":{
+    "file15":{
       "filename":"TestCSV",
       "filedeffile":"definition_data/SQLTestDefinition.json"
     }
   }
 }
+

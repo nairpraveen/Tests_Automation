@@ -9,10 +9,10 @@
   "encrypted": "Yes",
   "fullorincremental": "Incremental",
   "description": "",
-  "column_names": "['AccountID', 'LoanID', 'ProjectionNumber', 'InterestRate', 'Amount', 'StatementDate', 'Principal', 'Interest', 'Fees']",
+  "column_names": "['LoanID', 'AccountID', 'ProjectionNumber', 'InterestRate', 'Amount', 'StatementDate', 'Principal', 'Interest', 'Fees']",
   "columns": {
-    "AccountID": {
-      "order": "1",
+    "LoanID": {
+      "order": "2",
       "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
@@ -22,8 +22,8 @@
       "allowempty": "No",
       "description": "Kabbage account identifier"
     },
-    "LoanID": {
-      "order": "2",
+    "AccountID": {
+      "order": "1",
       "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
