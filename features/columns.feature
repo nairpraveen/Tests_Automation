@@ -30,3 +30,8 @@ Scenario: SQL and python comparison
 Scenario: data type check for columns in a file
    Given  a file
     Then  data type check
+
+@all
+Scenario: check for special characters
+  Given   a file
+   Then   special characters
