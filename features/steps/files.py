@@ -38,4 +38,4 @@ class retrieve_files(object):
 			c = text_files[a]['filedeffile']
 			datafiles_names.append("data/"+b+"/"+b1)
 			deffiles_names.append(c)
-		return  datafiles_names, deffiles_names, control_data_file, control_def_file_loc
+		return datafiles_names, deffiles_names, control_data_file, control_def_file_loc
