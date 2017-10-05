@@ -75,11 +75,11 @@ class scenario(object):
 
 				l1 = (list(client_file_data.columns))
 				l2 = (list(json_def_data["columns"]))
-
+				print(set(l1).union(l2) - set(l1).intersection(l2))
 				if len(set(l1).intersection(l2)) == len(l2) :
 					line2 = {"Test name": "Column names", "Result": "Passed"}
 				else:
-					line2 = {"Test name": "Column names", "Result": "Failed", "Output": "The partner file has other columns "+str(set(l1).union(l2) - set(l1).intersection(l2))}
+					line2 = {"Test name": "Column names", "Result": "Failed", "Output": {"The partner file has other columns ":list(set(l1).union(l2) - set(l1).intersection(l2))}}
 
 				# column order validation
 
@@ -102,26 +102,11 @@ class scenario(object):
 							pass_list[i] = str(def_col[i])
 						else:
 							fail_list[i] = str(def_col[i])
+				#print(list(def_col.values()))
+				#print(list(fail_list.values()))
 				if len(fail_list) != 0:
-						output1=" The expected column order is "+":"+str(list(def_col.values()))
-						temp = ''
-						for o in output1:
-							if o == ',':
-								temp = temp + o
-							else:
-								temp = temp + o
-						output1 = temp
-						print(output1)
-						output2=" But the partner file has these columns with wrong order "+":"+str(list(fail_list.values()))
-						temp = ''
-						for o in output2:
-							if o == ',':
-								temp = temp + o
-							else:
-								temp = temp + o
-						output2 = temp
-						print(output1 + output2)
-						line3 = {"Test name": "Column order", "Result": "Failed", "Output":output1+output2}
+
+					line3 = {"Test name": "Column order", "Result": "Failed", "Output":{"the expected column order is":list(def_col.values())},"but the partner file has these columns with wrong order":list(fail_list.values())}
 
 				else:
 					line3 = {"Test name": "Column order", "Result": "Passed"}
