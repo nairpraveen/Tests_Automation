@@ -44,6 +44,7 @@ class f_comp(object):
 					elif latest_data.ix[1].index[i] == previous_latest_data.ix[1].index[i] and latest_data.ix[1][i] == "Failed" and previous_latest_data.ix[1][i] == "Pass":
 
 						line = filecmp.cmp(resultsfiles_loc+file_list[len(file_list)-1]+"/"+"Failed"+"/"+latest_data.ix[1].index[i], resultsfiles_loc+file_list[len(file_list)-2]+"/"+"Pass"+"/"+previous_latest_data.ix[1].index[i])
+
 						if line == "False":
 							result_line = ["The file is different from the Previous created file"]
 						else:

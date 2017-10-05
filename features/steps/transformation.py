@@ -36,7 +36,7 @@ class scenario(object):
 
 		final_lines_to_file = {}
 
-		text_file_summary_result = resultsfilelocation+"Summary_Result"+"/"+today_now+"/"+"summary_result.json"
+		text_file_summary_result = resultsfilelocation+"Summary_Result"+"/"+"summary_result.json"
 		total_Summary_line = {}
 
 		for i in range(0, len(datafiles_names)):
@@ -48,9 +48,9 @@ class scenario(object):
 			json_def_name = json_def.split('/')[1]
 			client_file_name_split = client_file_name[-len(client_file_name):-4]
 
-			text_file_pass = resultsfilelocation+today_now+"/"+"Pass/"
-			text_file_fail = resultsfilelocation+today_now+"/"+"Failed/"
-			text_file_result = resultsfilelocation+today_now+"/"+"Result/"+client_file_name_split+".json"
+			text_file_pass = resultsfilelocation+"/"+"Pass/"
+			text_file_fail = resultsfilelocation+"/"+"Failed/"
+			text_file_result = resultsfilelocation+"/"+"Result/"+client_file_name_split+".json"
 
 			if client_file_name in list(control_file.index):
 
