@@ -4,6 +4,8 @@ from dir_file import dir_create
 from datetime import date
 # from file_comp import file_comp
 import json
+from collections import OrderedDict
+import pprint
 
 class scenario(object):
 	"""docstring for Count"""
@@ -55,8 +57,8 @@ class scenario(object):
 			if client_file_name in list(control_file.index):
 
 				client_file_data = pd.read_csv(client_file, sep= sep_value)
-				json_def_data = pd.read_json(json_def)
-
+				json_def_data = json.load(open(json_def), object_pairs_hook=OrderedDict)
+				#print(list(json_def_data["columns"]))
 				#checking null values
 
 				l4 = client_file_data
@@ -72,7 +74,7 @@ class scenario(object):
 				# column names validation
 
 				l1 = (list(client_file_data.columns))
-				l2 = (list(json_def_data["columns"].index))
+				l2 = (list(json_def_data["columns"]))
 
 				if len(set(l1).intersection(l2)) == len(l2) :
 					line2 = {"Test name": "Column names", "Result": "Passed"}
@@ -81,15 +83,14 @@ class scenario(object):
 
 				# column order validation
 
-				l2 = (json_def_data["columns"])
-				l2_values = (list(json_def_data["columns"].index))
-
+				l3 = (json_def_data["columns"])
+				#print(l2)
 				temp1 = []
 				def_col, pass_list, fail_list = {}, {}, {}
 
-				for index, col in enumerate(l2_values):
-					if int(l2[col]['order']) <= len(l1):
-						def_col[int(l2[col]['order'])-1] = col
+				for index, col in enumerate(l2):
+					if int(l3[col]['order']) <= len(l1):
+						def_col[int(l3[col]['order'])-1] = col
 						def_col.update(def_col)
 				if len(def_col.keys()) != len(l1):
 					fail_list[-1000] = "Length of the columns doesn't match and the columns present in partner files are"
@@ -102,7 +103,26 @@ class scenario(object):
 						else:
 							fail_list[i] = str(def_col[i])
 				if len(fail_list) != 0:
-					line3 = {"Test name": "Column order", "Result": "Failed", "Output": "The expected column order is "+str(list(def_col.values()))+" but we have "+str(list(fail_list.values()))}
+						output1=" The expected column order is "+":"+str(list(def_col.values()))
+						temp = ''
+						for o in output1:
+							if o == ',':
+								temp = temp + o
+							else:
+								temp = temp + o
+						output1 = temp
+						print(output1)
+						output2=" But the partner file has these columns with wrong order "+":"+str(list(fail_list.values()))
+						temp = ''
+						for o in output2:
+							if o == ',':
+								temp = temp + o
+							else:
+								temp = temp + o
+						output2 = temp
+						print(output1 + output2)
+						line3 = {"Test name": "Column order", "Result": "Failed", "Output":output1+output2}
+
 				else:
 					line3 = {"Test name": "Column order", "Result": "Passed"}
 
@@ -129,7 +149,7 @@ class scenario(object):
 				# creating a json output file in result folder
 
 				with open(text_file_result, "w") as output:
-					json.dump(final_lines_to_file, output, indent=2)
+					json.dump(final_lines_to_file, output, indent=4)
 				output.close()
 
 			else:
