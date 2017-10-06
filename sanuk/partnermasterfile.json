@@ -6,17 +6,17 @@
   "files": {
     "file1":
     {
-      "filename": "PortfolioTransactionFile",
+      "filename": "kab_portfolio_transaction",
       "filedeffile": "definition_data/PortfolioTransactionFileDefinition.json"
     },
     "file2":
     {
-      "filename": "PortfolioFile",
+      "filename": "kab_portfolio",
       "filedeffile": "definition_data/PortfolioFileDefinition.json"
     },
     "file3":
     {
-      "filename": "PortfolioProjectionFile",
+      "filename": "kab_portfolio_projection",
       "filedeffile": "definition_data/PortfolioProjectionFileDefinition.json"
     }
   }

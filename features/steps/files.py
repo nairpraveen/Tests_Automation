@@ -1,6 +1,7 @@
 import pandas as pd
 import os, fnmatch
 from dir_file import dir_create
+import re
 
 class retrieve_files(object):
 	"""docstring for Count"""
@@ -8,34 +9,36 @@ class retrieve_files(object):
 	def __init__(self):
 		self.fn = None
 
-	def find(pattern, path):
+	def find(pattern1, pattern2, pattern3, path):
 		result = []
 		for file in os.listdir(path):
-			if fnmatch.fnmatch(file, '*.txt'):
-				total_file_name = file
-				if total_file_name[-12:-4] == str(pattern):
-					result.append(total_file_name)
-			elif fnmatch.fnmatch(file, '*.csv'):
-				total_file_name = file
-				if total_file_name[-12:-4] == str(pattern):
-					result.append(total_file_name)
+			if re.search(str(pattern2), file):
+				if re.search(str(pattern3), file):
+					if fnmatch.fnmatch(file, '*.txt'):
+						if re.search(str(pattern1), file):
+							result.append(path+file)
+					elif fnmatch.fnmatch(file, '*.csv'):
+						if re.search(str(pattern1), file):
+							result.append(path+file)
 		return result
 
 
-	def files(self, date, masterfile_loc,resultsfilelocation):
+	def files(self, date, masterfile_loc,resultsfilelocation, timestamp):
 		masterfile = pd.read_json(masterfile_loc)
 		control_def_file_loc = masterfile.controlfile.ix[0]
-		controlfile = pd.read_json(control_def_file_loc)
-		controlfile_folder = controlfile.filename.ix[0]
-		control_data_file = "data/"+controlfile_folder+"/"+retrieve_files.find(date, "data/"+controlfile_folder)[0]
+		data_file_loc = masterfile.datafilelocation.ix[0]
+		control_data_file = data_file_loc+"/"+"kab_control_"+date+".txt"
 		text_files = masterfile.files
 		datafiles_names = []
 		deffiles_names = []
 		for i in range(0, len(text_files)):
 			a = text_files.index[i]
 			b = str(text_files[a]['filename'])
-			b1 = str(retrieve_files.find(date, "data/"+b)[0])
+			datafiles_names.append(retrieve_files.find(date, b, timestamp, data_file_loc+"/"))
 			c = text_files[a]['filedeffile']
-			datafiles_names.append("data/"+b+"/"+b1)
 			deffiles_names.append(c)
+			# datafiles_names.append(b1)
+		datafiles_names  = set([val for sublist in datafiles_names for val in sublist])
+		datafiles_names = sorted(datafiles_names)
+
 		return datafiles_names, deffiles_names, control_data_file, control_def_file_loc

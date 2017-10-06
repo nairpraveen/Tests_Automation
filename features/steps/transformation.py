@@ -40,11 +40,10 @@ class scenario(object):
 		total_Summary_line = {}
 
 		for i in range(0, len(datafiles_names)):
-
 			client_file = datafiles_names[i]
 			json_def = deffiles_names[i]
 			sep_value = scenario.seperator_value(json_def)
-			client_file_name = client_file.split('/')[2]
+			client_file_name = client_file.split('/')[1]
 			json_def_name = json_def.split('/')[1]
 			client_file_name_split = client_file_name[-len(client_file_name):-4]
 
