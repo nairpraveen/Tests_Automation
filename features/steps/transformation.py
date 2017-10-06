@@ -57,8 +57,6 @@ class scenario(object):
 
 				client_file_data = pd.read_csv(client_file, sep= sep_value)
 				json_def_data = json.load(open(json_def), object_pairs_hook=OrderedDict)
-				#print(list(json_def_data["columns"]))
-				#checking null values
 
 				l4 = client_file_data
 				dff = pd.DataFrame(l4)
@@ -83,7 +81,6 @@ class scenario(object):
 				# column order validation
 
 				l3 = (json_def_data["columns"])
-				#print(l2)
 				temp1 = []
 				def_col, pass_list, fail_list = {}, {}, {}
 
@@ -101,8 +98,6 @@ class scenario(object):
 							pass_list[i] = str(def_col[i])
 						else:
 							fail_list[i] = str(def_col[i])
-				#print(list(def_col.values()))
-				#print(list(fail_list.values()))
 				if len(fail_list) != 0:
 
 					line3 = {"Test name": "Column order", "Result": "Failed", "Output":{"the expected column order is":list(def_col.values())},"but the partner file has these columns with wrong order":list(fail_list.values())}
