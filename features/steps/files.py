@@ -31,14 +31,25 @@ class retrieve_files(object):
 		text_files = masterfile.files
 		datafiles_names = []
 		deffiles_names = []
+
 		for i in range(0, len(text_files)):
 			a = text_files.index[i]
 			b = str(text_files[a]['filename'])
 			datafiles_names.append(retrieve_files.find(date, b, timestamp, data_file_loc+"/"))
-			c = text_files[a]['filedeffile']
-			deffiles_names.append(c)
-			# datafiles_names.append(b1)
+
+			for file in os.listdir(data_file_loc+"/"):
+				if re.search(str(b), file):
+					if re.search(str(timestamp), file):
+						if fnmatch.fnmatch(file, '*.txt'):
+							if re.search(str(date), file):
+								c = text_files[a]['filedeffile']
+								deffiles_names.append(c)
+						elif fnmatch.fnmatch(file, '*.csv'):
+							if re.search(str(date), file):
+								c = text_files[a]['filedeffile']
+								deffiles_names.append(c)
+
 		datafiles_names  = set([val for sublist in datafiles_names for val in sublist])
 		datafiles_names = sorted(datafiles_names)
-
+		deffiles_names = sorted(set(deffiles_names))
 		return datafiles_names, deffiles_names, control_data_file, control_def_file_loc

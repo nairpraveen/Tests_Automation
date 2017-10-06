@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 import json
-import os, glob
+import os, glob, re
 import filecmp
 
 class f_comp(object):
@@ -12,49 +12,47 @@ class f_comp(object):
 		self.fn = None
 
 
-	def comp(self, text_file_summary_result, resultsfiles_loc):
+	def comp(self, text_file_summary_result, datafiles_names, timestamp, resultsfiles_loc):
 
 		final_result, result = {}, {}
 		my_file = Path(text_file_summary_result)
-		if my_file.exists():
+		pass_file_list = os.listdir(resultsfiles_loc+"Pass"+"/")
+		fail_file_list = os.listdir(resultsfiles_loc+"Failed"+"/")
+		result_line = []
 
-			file_list = sorted(os.listdir(resultsfiles_loc+"Summary_Result"+"/"))
+		if len(pass_file_list):
 
-			if len(file_list) > 1:
+			for file in pass_file_list:
+				for file1 in fail_file_list:
+					for i in range(0, len(datafiles_names)):
+						client_file = datafiles_names[i]
+						client_file_name = client_file.split('/')[1]
 
-				with open(resultsfiles_loc+"Summary_Result"+"/"+file_list[len(file_list)-1]+"/"+"summary_result.json", 'r') as datafile:
-					latest_data = json.load(datafile)
-				latest_data = pd.DataFrame(latest_data)
+						if re.search(str(timestamp), client_file_name):
+							file_name_without_ts = client_file_name.rsplit(timestamp, 1)[0]
 
-				with open(resultsfiles_loc+"Summary_Result"+"/"+file_list[len(file_list)-2]+"/"+"summary_result.json", 'r') as datafile:
-					previous_latest_data = json.load(datafile)
-				previous_latest_data = pd.DataFrame(previous_latest_data)
+							if re.search(str(file_name_without_ts), str(file)):
+								line = filecmp.cmp(resultsfiles_loc+"Pass"+"/"+file, resultsfiles_loc+"Pass"+"/"+file)
+								if line == "False":
+									result_line = ["The file is different from the Previous created file"]
+								else:
+									result_line = ["The file has no conflicts"]
 
-				for i in range(0, len(latest_data.ix[1].index)):
+							elif re.search(str(file_name_without_ts), str(file1)):
+								if re.search(str(file_name_without_ts), str(file)):
+									line = filecmp.cmp(resultsfiles_loc+"Failed"+"/"+client_file_name, resultsfiles_loc+"Pass"+"/"+file)
+									if line == "False":
+										result_line = ["The file is different from the Previous created file"]
+									else:
+										result_line = ["The file has no conflicts"]
+							else:
+								result_line = ["The File has no conflicts because it's a newly created file"]
+						result[client_file_name] = result_line
+		else:
+			result_line = ["There are no passed files to compare"]
+		
+		print(result,"--------------------------")
 
-					if latest_data.ix[1].index[i] == previous_latest_data.ix[1].index[i] and latest_data.ix[1][i] == "Pass" and previous_latest_data.ix[1][i] == "Pass":
-
-						line = filecmp.cmp(resultsfiles_loc+file_list[len(file_list)-1]+"/"+"Pass"+"/"+latest_data.ix[1].index[i], resultsfiles_loc+file_list[len(file_list)-2]+"/"+"Pass"+"/"+previous_latest_data.ix[1].index[i])
-						if line == "False":
-							result_line = ["The file is different from the Previous created file"]
-						else:
-							result_line = ["The file has no conflicts"]
-
-
-					elif latest_data.ix[1].index[i] == previous_latest_data.ix[1].index[i] and latest_data.ix[1][i] == "Failed" and previous_latest_data.ix[1][i] == "Pass":
-
-						line = filecmp.cmp(resultsfiles_loc+file_list[len(file_list)-1]+"/"+"Failed"+"/"+latest_data.ix[1].index[i], resultsfiles_loc+file_list[len(file_list)-2]+"/"+"Pass"+"/"+previous_latest_data.ix[1].index[i])
-
-						if line == "False":
-							result_line = ["The file is different from the Previous created file"]
-						else:
-							result_line = ["The file has no conflicts"]
-					else:
-						result_line = ["The File has no conflicts because it's a newly created file"]
-
-					result[latest_data.ix[1].index[i]] = result_line
-				final_result[file_list[len(file_list)-1]] = result
-
-				with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
-					json.dump(final_result, f2, indent=4)
-				f2.close()
+		with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
+			json.dump(result, f2, indent=4)
+		f2.close()

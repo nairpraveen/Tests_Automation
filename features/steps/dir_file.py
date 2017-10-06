@@ -10,7 +10,6 @@ class dir_create(object):
 		self.fn = None
 
 	def dir(self, resultsfilelocation):
-		today_now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 		mydir_pass = os.path.join(resultsfilelocation, "Pass")
 		mydir_fail = os.path.join(resultsfilelocation, "Failed")
 		mydir_result = os.path.join(resultsfilelocation, "Result")

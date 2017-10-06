@@ -30,11 +30,10 @@ class scenario(object):
 		return sep_value
 
 
-	def scenario_writing_to_files(self, today_now, resultsfilelocation, datafiles_names, deffiles_names, control_file, control_def_file_loc):
+	def scenario_writing_to_files(self, resultsfilelocation, datafiles_names, deffiles_names, control_file, control_def_file_loc):
 
 		control_file_sep_value = scenario.seperator_value(control_def_file_loc)
 		control_file = scenario.control_file_values(control_file, control_file_sep_value)
-		today = date.today()
 
 		final_lines_to_file = {}
 
@@ -72,7 +71,7 @@ class scenario(object):
 
 				l1 = (list(client_file_data.columns))
 				l2 = (list(json_def_data["columns"]))
-				print(set(l1).union(l2) - set(l1).intersection(l2))
+				
 				if len(set(l1).intersection(l2)) == len(l2) :
 					line2 = {"Test name": "Column names", "Result": "Passed"}
 				else:
@@ -111,13 +110,13 @@ class scenario(object):
 					with open(text_file_pass+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
-					Summary_line = {"FileName" : client_file_name, "TimeStamp" : today_now, "Result" : "Pass"}
+					Summary_line = {"FileName" : client_file_name, "Result" : "Pass"}
 
 				else:
 					with open(text_file_fail+client_file_name, 'w') as f1:
 						for line in open(client_file):
 							f1.write(line)
-					Summary_line = {"FileName" : client_file_name, "TimeStamp" : today_now, "Result" : "Failed"}
+					Summary_line = {"FileName" : client_file_name, "Result" : "Failed"}
 
 				total_Summary_line[client_file_name] = Summary_line
 
@@ -133,7 +132,7 @@ class scenario(object):
 
 			else:
 
-				total_Summary_line[client_file_name] = {"FileName" : client_file_name, "TimeStamp" : today_now, "Result" : "File doesn't exist in the control file"}
+				total_Summary_line[client_file_name] = {"FileName" : client_file_name, "Result" : "File doesn't exist in the control file"}
 
 		# writing to Summary result file
 

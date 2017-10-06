@@ -18,6 +18,11 @@
     {
       "filename": "kab_portfolio_projection",
       "filedeffile": "definition_data/PortfolioProjectionFileDefinition.json"
+    },
+    "file4":
+    {
+      "filename": "test",
+      "filedeffile": "definition_data/TestFileDefinition.json"
     }
   }
 }
