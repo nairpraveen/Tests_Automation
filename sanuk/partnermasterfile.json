@@ -1,6 +1,6 @@
 {
  "partner": "santander",
-  "datafilelocation" : "data",
+  "datafilelocation" : "C:/Users/Abhi/Documents/Orion/Tests_Automation/data",
   "definitionfilelocation" : "definition_data",
   "controlfile": "definition_data/ControlFileDefinition.json",
   "files": {

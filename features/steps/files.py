@@ -27,7 +27,7 @@ class retrieve_files(object):
 		masterfile = pd.read_json(masterfile_loc)
 		control_def_file_loc = masterfile.controlfile.ix[0]
 		data_file_loc = masterfile.datafilelocation.ix[0]
-		control_data_file = data_file_loc+"/"+"kab_control_"+date+".txt"
+		# control_data_file = data_file_loc+"/"+"kab_control_"+date+".txt"
 		text_files = masterfile.files
 		datafiles_names = []
 		deffiles_names = []
@@ -52,4 +52,5 @@ class retrieve_files(object):
 		datafiles_names  = set([val for sublist in datafiles_names for val in sublist])
 		datafiles_names = sorted(datafiles_names)
 		deffiles_names = sorted(set(deffiles_names))
-		return datafiles_names, deffiles_names, control_data_file, control_def_file_loc
+		print(datafiles_names, deffiles_names, control_def_file_loc,"======================")
+		return datafiles_names, deffiles_names, control_def_file_loc
