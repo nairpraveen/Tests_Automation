@@ -142,10 +142,11 @@ class scenario(object):
             for line in pass_control_file_data:
             	out.write('\n'+line)
 
-        fail_file='FailedFile_'+date+"_"+timestamp+'.txt'
-        with open(pass_fail_control_file+fail_file,'w') as out2:
-            out2.write('Filename')
-            for line in fail_control_file_data:
-                out2.write('\n'+line)
+        if len(fail_control_file_data) != 0:
+	        fail_file='FailedFile_'+date+"_"+timestamp+'.txt'
+	        with open(pass_fail_control_file+fail_file,'w') as out2:
+	            out2.write('Filename')
+	            for line in fail_control_file_data:
+	                out2.write('\n'+line)
 
         return final_lines_to_file
