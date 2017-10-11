@@ -14,8 +14,6 @@ def step_given_the_file(context):
 	timestamp = context.config.userdata.get("timestamp")
 	context.files = retrieve_files()
 	context.transformation = scenario()
-	datafiles_names, deffiles_names, control_def_file_loc = context.files.files(date, masterfile_loc, resultsfiles_loc, timestamp)
-	assert_that(len(datafiles_names) > 0)
 
 
 @then('check null values')
@@ -29,7 +27,7 @@ def step_check_null_values(context):
 	values = dir_file.dir(resultsfiles_loc)
 	text_file_summary_result, final_lines_to_file = context.transformation.scenario_writing_to_files( resultsfiles_loc, datafiles_names, deffiles_names, control_def_file_loc)
 	file_comp = f_comp()
-	comparison = file_comp.comp(text_file_summary_result, datafiles_names, timestamp, resultsfiles_loc)
+	comparison = file_comp.comp(text_file_summary_result, datafiles_names, date, timestamp, resultsfiles_loc)
 
 
 @then('column names should match')

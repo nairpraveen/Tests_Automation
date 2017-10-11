@@ -2,10 +2,8 @@ import pandas as pd
 import glob, os, datetime
 from dir_file import dir_create
 from datetime import date
-# from file_comp import file_comp
 import json
 from collections import OrderedDict
-import pprint
 
 class scenario(object):
 	"""docstring for Count"""

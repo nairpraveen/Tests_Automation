@@ -12,47 +12,40 @@ class f_comp(object):
 		self.fn = None
 
 
-	def comp(self, text_file_summary_result, datafiles_names, timestamp, resultsfiles_loc):
+	def comp(self, text_file_summary_result, datafiles_names, date, timestamp, resultsfiles_loc):
 
 		final_result, result = {}, {}
 		my_file = Path(text_file_summary_result)
 		pass_file_list = os.listdir(resultsfiles_loc+"Pass"+"/")
 		fail_file_list = os.listdir(resultsfiles_loc+"Failed"+"/")
-		result_line = []
-
-		if len(pass_file_list):
-
+		result_line, pass_dict, fail_dict = {}, {}, {}
+		for pass_file in range(0, len(pass_file_list)):
+			file_name = pass_file_list[pass_file].rsplit(date, 1)[0]
 			for file in pass_file_list:
-				for file1 in fail_file_list:
-					for i in range(0, len(datafiles_names)):
-						client_file = datafiles_names[i]
-						client_file_name = client_file.split('/')[1]
+				if re.search(str(file_name), file):
+					pass_dict[pass_file_list[pass_file]] = file
 
-						if re.search(str(timestamp), client_file_name):
-							file_name_without_ts = client_file_name.rsplit(timestamp, 1)[0]
+		for fail_file in range(0, len(fail_file_list)):
+			file_name = fail_file_list[fail_file].rsplit(date, 1)[0]
+			for file in pass_file_list:
+				if re.search(str(file_name), file):
+					fail_dict[fail_file_list[fail_file]] = file
 
-							if re.search(str(file_name_without_ts), str(file)):
-								line = filecmp.cmp(resultsfiles_loc+"Pass"+"/"+file, resultsfiles_loc+"Pass"+"/"+file)
-								if line == "False":
-									result_line = ["The file is different from the Previous created file"]
-								else:
-									result_line = ["The file has no conflicts"]
 
-							elif re.search(str(file_name_without_ts), str(file1)):
-								if re.search(str(file_name_without_ts), str(file)):
-									line = filecmp.cmp(resultsfiles_loc+"Failed"+"/"+client_file_name, resultsfiles_loc+"Pass"+"/"+file)
-									if line == "False":
-										result_line = ["The file is different from the Previous created file"]
-									else:
-										result_line = ["The file has no conflicts"]
-							else:
-								result_line = ["The File has no conflicts because it's a newly created file"]
-						result[client_file_name] = result_line
+		pass_dict = { k:v for k,v in pass_dict.items() if k!=v }
+		fail_dict = { k:v for k,v in fail_dict.items() if k!=v }
+		if len(pass_dict) > 0:
+			for key, value in pass_dict.items():
+				line = filecmp.cmp(resultsfiles_loc+"Pass"+"/"+key, resultsfiles_loc+"Pass"+"/"+value)
+				if line == "False":
+					result_line[key] = ["The file is different from the Previous created file"]
+				else:
+					result_line[key] = ["The file has no conflicts"]
+			if len(fail_dict) > 0:
+				result_line[key] = ["The file has passed before but failed now"]
 		else:
 			result_line = ["There are no passed files to compare"]
-		
-		print(result,"--------------------------")
 
 		with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
-			json.dump(result, f2, indent=4)
+			json.dump(result_line, f2, indent=4)
 		f2.close()
