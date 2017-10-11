@@ -32,7 +32,7 @@ def step_column_order_should_match(context):
 		if len(timestamp) >= 6:
 			try:
 				datafiles_names, deffiles_names, control_def_file_loc = context.files.files(date, masterfile_loc, resultsfiles_loc,timestamp)
-				if len(datafiles_names) != 0 | len(deffiles_names) != 0 | len(datafiles_names) == len(deffiles_names):
+				if len(datafiles_names) != 0 and len(deffiles_names) != 0 and len(datafiles_names) == len(deffiles_names):
 					dir_file = dir_create()
 					values = dir_file.dir(resultsfiles_loc)
 					final_lines_to_file = context.transformation.scenario_writing_to_files(resultsfiles_loc, datafiles_names,deffiles_names, control_def_file_loc, date, timestamp)
@@ -41,7 +41,7 @@ def step_column_order_should_match(context):
 				else:
 					print("There are no files with the given timestamp")
 			except TypeError as err:
-				print("Error Message: "+err)
+				print("Error Message: "+str(err))
 		else:
 			assert (len(timestamp) >= 6), "Given timestamp doesn't match"
 	else:

@@ -21,16 +21,16 @@
         "Result": "Failed",
         "Output": {
             "The partner file has other columns ": [
-                "TotalAmountofLoanChargeOffInterest",
-                "PortfolioTransactionId",
-                "TotalAmountOfLoanChargeOffInterest",
-                "PortfolioTransactionID",
                 "TotalAmountofLoanChargeOffPrincipal",
-                "TotalAmountOfLoanChargeOff",
-                "TotalAmountofLoanChargeOffFees",
-                "TotalAmountOfLoanChargeOffPrincipal",
                 "TotalAmountofLoanChargeOff",
-                "TotalAmountOfLoanChargeOffFees"
+                "TotalAmountofLoanChargeOffInterest",
+                "PortfolioTransactionID",
+                "TotalAmountOfLoanChargeOffInterest",
+                "TotalAmountOfLoanChargeOffFees",
+                "PortfolioTransactionId",
+                "TotalAmountofLoanChargeOffFees",
+                "TotalAmountOfLoanChargeOff",
+                "TotalAmountOfLoanChargeOffPrincipal"
             ]
         }
     },
