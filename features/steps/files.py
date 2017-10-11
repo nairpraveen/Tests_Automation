@@ -12,13 +12,13 @@ class retrieve_files(object):
 	def find(pattern1, pattern2, pattern3, path):
 		result = []
 		for file in os.listdir(path):
-			if re.search(str(pattern2), file):
-				if re.search(str(pattern3), file):
+			if re.search(str(pattern3), file):
+				if re.search(str(pattern1), file):
 					if fnmatch.fnmatch(file, '*.txt'):
-						if re.search(str(pattern1), file):
+						if re.search(str(pattern2), file):
 							result.append(path+file)
 					elif fnmatch.fnmatch(file, '*.csv'):
-						if re.search(str(pattern1), file):
+						if re.search(str(pattern2), file):
 							result.append(path+file)
 		return result
 
