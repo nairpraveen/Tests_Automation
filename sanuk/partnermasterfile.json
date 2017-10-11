@@ -1,6 +1,6 @@
 {
  "partner": "santander",
-  "datafilelocation" : "C:/Users/Abhi/Documents/Orion/Tests_Automation/data",
+  "datafilelocation" : "data",
   "definitionfilelocation" : "definition_data",
   "controlfile": "definition_data/ControlFileDefinition.json",
   "files": {
@@ -19,11 +19,16 @@
       "filename": "kab_portfolio_projection",
       "filedeffile": "definition_data/PortfolioProjectionFileDefinition.json"
     },
-    "file4":
-    {
+    "file4": {
       "filename": "test",
       "filedeffile": "definition_data/TestFileDefinition.json"
+    },
+    "file5":
+    {
+      "filename": "test2",
+      "filedeffile": "definition_data/Test2FileDefinition.json"
     }
+
   }
 }
 

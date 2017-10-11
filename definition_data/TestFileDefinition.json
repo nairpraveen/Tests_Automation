@@ -9,11 +9,11 @@
   "encrypted": "Yes",
   "fullorincremental": "Full",
   "description": "",
-  "column_names": "['a', 'b', 'c']",
+  "column_names": "['name', 'id', 'value']",
   "columns": {
     "name": {
       "order": "1",
-      "dbtype": "INT",
+      "dbtype": "VARCHAR(10)",
       "minvalue" : "",
       "maxvalue": "",
       "maxlength": "",
@@ -44,5 +44,5 @@
       "allowempty": "No",
       "description": "Date of loan origination"
     }
-  }
+}
 }

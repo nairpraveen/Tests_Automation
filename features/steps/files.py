@@ -52,5 +52,5 @@ class retrieve_files(object):
 		datafiles_names  = set([val for sublist in datafiles_names for val in sublist])
 		datafiles_names = sorted(datafiles_names)
 		deffiles_names = sorted(set(deffiles_names))
-		print(datafiles_names, deffiles_names, control_def_file_loc,"======================")
+		#print(datafiles_names, deffiles_names, control_def_file_loc,"======================")
 		return datafiles_names, deffiles_names, control_def_file_loc
