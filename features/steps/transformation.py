@@ -114,7 +114,7 @@ class scenario(object):
 
                 # pass control file
 
-                pass_control_file_data.append(client_file_name + "{" + str(len(client_file_data)))
+                pass_control_file_data.append(client_file_name + "|" + str(len(client_file_data)))
 
             else:
                 with open(text_file_fail + client_file_name, 'w') as f1:

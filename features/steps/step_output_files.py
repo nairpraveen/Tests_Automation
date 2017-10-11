@@ -10,20 +10,6 @@ from dir_file import dir_create
 def step_given_the_file(context):
 	context.files = retrieve_files()
 	context.transformation = scenario()
-
-
-@then('check null values')
-def step_check_null_values(context):
-	pass
-
-
-@then('column names should match')
-def step_column_names_should_match(context):
-	pass
-
-
-@then('column order should match')
-def step_column_order_should_match(context):
 	date = context.config.userdata.get("date")
 	if len(date) == 8:
 		masterfile_loc = context.config.userdata.get("masterfile_loc")
@@ -38,11 +24,44 @@ def step_column_order_should_match(context):
 					final_lines_to_file = context.transformation.scenario_writing_to_files(resultsfiles_loc, datafiles_names,deffiles_names, control_def_file_loc, date, timestamp)
 					file_comp = f_comp()
 					comparison = file_comp.comp(date, timestamp, resultsfiles_loc)
+
+					@then('check null values')
+					def step_check_null_values(context):
+						pass
+
+
+					@then('column names should match')
+					def step_column_names_should_match(context):
+						pass
+
+
+					@then('column order should match')
+					def step_column_order_should_match(context):
+						pass
+
 				else:
-					print("There are no files with the given timestamp")
+					print ("There are no files with the given timestamp")
+
+					@then('check null values')
+					def step_check_null_values(context):
+						assert context.text, "REQUIRE: corrent data input"
+
+					@then('column names should match')
+					def step_column_names_should_match(context):
+						assert context.text, "REQUIRE: corrent data input"
+
+
+					@then('column order should match')
+					def step_column_order_should_match(context):
+						assert context.text, "REQUIRE: corrent data input"
+
 			except TypeError as err:
-				print("Error Message: "+str(err))
+				print ("Error Message: "+str(err))
 		else:
-			assert (len(timestamp) >= 6), "Given timestamp doesn't match"
+			print (len(timestamp) >= 6), "Given timestamp doesn't match"
 	else:
 		assert (len(date) == 8), "Given Date format doesn't match"
+
+
+
+	
