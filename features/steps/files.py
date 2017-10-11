@@ -56,4 +56,3 @@ class retrieve_files(object):
 			return datafiles_names, deffiles_names, control_def_file_loc
 		except:
 			print("MasterJSON File Not Found in the specified path")
-

@@ -1,8 +1,8 @@
 {
-  "filename": "test",
-  "filenameformat" : "test_yyyymmdd.csv",
+  "filename": "Sample2",
+  "filenameformat" : "Sample2_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "fieldseparator": ",",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",
@@ -44,5 +44,5 @@
       "allowempty": "No",
       "description": "Date of loan origination"
     }
-}
+  }
 }

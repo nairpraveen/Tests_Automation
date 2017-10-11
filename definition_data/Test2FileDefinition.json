@@ -1,6 +1,6 @@
 {
-  "filename": "test",
-  "filenameformat" : "test_yyyymmdd.csv",
+  "filename": "test2",
+  "filenameformat" : "test2_yyyymmdd.txt",
   "decimalseparator" : ".",
   "fieldseparator": ",",
   "dateformat": "YYYYMMDD",
@@ -9,21 +9,10 @@
   "encrypted": "Yes",
   "fullorincremental": "Full",
   "description": "",
-  "column_names": "['name', 'id', 'value']",
+  "column_names": "['user','username','pwd']",
   "columns": {
-    "name": {
+    "user": {
       "order": "1",
-      "dbtype": "VARCHAR(10)",
-      "minvalue" : "",
-      "maxvalue": "",
-      "maxlength": "",
-      "validvalues": "",
-      "allowedcharacters": "",
-      "allowempty": "No",
-      "description": "Kabbage account identifier"
-    },
-    "id": {
-      "order": "2",
       "dbtype": "INT",
       "minvalue" : "",
       "maxvalue": "",
@@ -31,9 +20,20 @@
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": "Loan identifier"
+      "description": ""
     },
-    "value": {
+    "username": {
+      "order": "2",
+      "dbtype": "VARCHAR(10)",
+      "minvalue" : "",
+      "maxvalue": "",
+      "maxlength": "",
+      "validvalues": "",
+      "allowedcharacters": "",
+      "allowempty": "No",
+      "description": ""
+    },
+    "pwd": {
       "order": "3",
       "dbtype": "INT",
       "minvalue" : "",
@@ -42,7 +42,7 @@
       "validvalues": "",
       "allowedcharacters": "",
       "allowempty": "No",
-      "description": "Date of loan origination"
+      "description": ""
     }
 }
 }

@@ -1,17 +1,17 @@
 {
-  "filename": "test",
-  "filenameformat" : "test_yyyymmdd.csv",
+  "filename": "Sample",
+  "filenameformat" : "Sample_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "fieldseparator": ",",
+  "fieldseparator": "{",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",
   "encrypted": "Yes",
   "fullorincremental": "Full",
   "description": "",
-  "column_names": "['name', 'id', 'value']",
+  "column_names": "['names', 'id', 'values']",
   "columns": {
-    "name": {
+    "names": {
       "order": "1",
       "dbtype": "VARCHAR(10)",
       "minvalue" : "",
@@ -33,7 +33,7 @@
       "allowempty": "No",
       "description": "Loan identifier"
     },
-    "value": {
+    "values": {
       "order": "3",
       "dbtype": "INT",
       "minvalue" : "",
@@ -44,5 +44,5 @@
       "allowempty": "No",
       "description": "Date of loan origination"
     }
-}
+  }
 }

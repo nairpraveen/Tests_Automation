@@ -4,8 +4,9 @@ import json
 import os, glob, re
 import filecmp
 
+
 class f_comp(object):
-	"""docstring for Count"""
+	"""docstring for file comparison"""
 
 
 	def __init__(self):

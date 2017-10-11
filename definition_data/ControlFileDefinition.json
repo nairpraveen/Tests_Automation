@@ -1,5 +1,5 @@
 {
-  "filename": "Controlfile",
+  "filename": "controlfile",
   "filenameformat" : "kab_control_yyyymmdd.txt",
   "decimalseparator" : ".",
   "fieldseparator": "{",
