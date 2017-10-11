@@ -13,10 +13,8 @@ class f_comp(object):
 		self.fn = None
 
 
-	def comp(self, text_file_summary_result, datafiles_names, date, timestamp, resultsfiles_loc):
+	def comp(self, date, timestamp, resultsfiles_loc):
 
-		final_result, result = {}, {}
-		my_file = Path(text_file_summary_result)
 		pass_file_list = os.listdir(resultsfiles_loc+"Pass"+"/")
 		fail_file_list = os.listdir(resultsfiles_loc+"Failed"+"/")
 		result_line, pass_dict, fail_dict = {}, {}, {}

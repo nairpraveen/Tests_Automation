@@ -36,9 +36,6 @@ class scenario(object):
 
         final_lines_to_file = {}
 
-        text_file_summary_result = resultsfilelocation + "Summary_Result" + "/" + "summary_result.json"
-        total_Summary_line = {}
-
         for i in range(0, len(datafiles_names)):
             client_file = datafiles_names[i]
             json_def = deffiles_names[i]
@@ -134,7 +131,6 @@ class scenario(object):
                 with open(text_file_fail + client_file_name, 'w') as f1:
                     for line in open(client_file):
                         f1.write(line)
-                Summary_line = {"FileName": client_file_name, "Result": "Failed"}
 
                 fail_file='FailedFile_'+date+"_"+timestamp+'.txt'
                 with open(pass_fail_control_file+fail_file,'w') as out2:
@@ -148,8 +144,6 @@ class scenario(object):
                             out2.write(os.path.basename(file_name)+"\n")
 
 
-            total_Summary_line[client_file_name] = Summary_line
-
             # writing the output to the result file
 
             final_lines_to_file = {"Test-1": line1, "Test-2": line2, "Test-3": line3}
@@ -160,11 +154,4 @@ class scenario(object):
                 json.dump(final_lines_to_file, output, indent=4)
             output.close()
 
-
-        # writing to Summary result file
-
-        with open(text_file_summary_result, 'a') as f2:
-            json.dump(total_Summary_line, f2, indent=3)
-        f2.close()
-
-        return text_file_summary_result, final_lines_to_file
+        return final_lines_to_file
