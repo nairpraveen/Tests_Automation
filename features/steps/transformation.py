@@ -35,6 +35,7 @@ class scenario(object):
         # control_file = scenario.control_file_values(control_file, control_file_sep_value)
 
         final_lines_to_file = {}
+        pass_control_file_data, fail_control_file_data = [], []
 
         for i in range(0, len(datafiles_names)):
             client_file = datafiles_names[i]
@@ -113,36 +114,17 @@ class scenario(object):
 
                 # pass control file
 
-                pass_control_file='PassControl_'+date+"_"+timestamp+'.txt'
-                with open(pass_fail_control_file+pass_control_file, 'w') as out:
-                    list_of_files1 = glob.glob(os.path.join(os.getcwd(),"Pass", "*.txt"))
-                    list_of_files2 = glob.glob(os.path.join(os.getcwd(),"Pass", "*.csv"))
-                    out.write('Filename|Rowcount')
-                    for file_name in list_of_files1:
-                        with open(file_name, 'r') as f:
-                            count = sum(1 for line in f)
-                            out.write('\n{f}|{c}'.format(f=os.path.basename(file_name), c=count))
-                    for file_name in list_of_files2:
-                        with open(file_name, 'r') as f:
-                            count = sum(1 for line in f)
-                            out.write('\n{f}|{c}'.format(f=os.path.basename(file_name), c=count))
+                pass_control_file_data.append(client_file_name + "{" + str(len(client_file_data)))
 
             else:
                 with open(text_file_fail + client_file_name, 'w') as f1:
                     for line in open(client_file):
                         f1.write(line)
 
-                fail_file='FailedFile_'+date+"_"+timestamp+'.txt'
-                with open(pass_fail_control_file+fail_file,'w') as out2:
-                    list_of_files3 = glob.glob(os.path.join(os.getcwd(), "Failed", "*.txt"))
-                    list_of_files4 = glob.glob(os.path.join(os.getcwd(), "Failed", "*.csv"))
-                    for file_name in list_of_files3:
-                        with open(file_name, 'r') as f:
-                            out2.write(os.path.basename(file_name)+"\n")
-                    for file_name in list_of_files4:
-                        with open(file_name, 'r') as f:
-                            out2.write(os.path.basename(file_name)+"\n")
+                # failed control file
 
+                fail_control_file_data.append(client_file_name)
+                
 
             # writing the output to the result file
 
@@ -153,5 +135,17 @@ class scenario(object):
             with open(text_file_result, "w") as output:
                 json.dump(final_lines_to_file, output, indent=4)
             output.close()
+
+        pass_control_file='PassControl_'+date+"_"+timestamp+'.txt'
+        with open(pass_fail_control_file+pass_control_file, 'w') as out:
+            out.write('Filename|Rowcount')
+            for line in pass_control_file_data:
+            	out.write('\n'+line)
+
+        fail_file='FailedFile_'+date+"_"+timestamp+'.txt'
+        with open(pass_fail_control_file+fail_file,'w') as out2:
+            out2.write('Filename')
+            for line in fail_control_file_data:
+                out2.write('\n'+line)
 
         return final_lines_to_file
