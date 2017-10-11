@@ -1,0 +1,22 @@
+{
+   "kab_portfolio_20170504_153636.txt": {
+      "FileName": "kab_portfolio_20170504_153636.txt",
+      "Result": "Failed"
+   },
+   "kab_portfolio_projection_20170504_153636.txt": {
+      "FileName": "kab_portfolio_projection_20170504_153636.txt",
+      "Result": "Pass"
+   },
+   "kab_portfolio_transaction_20170504_153636.txt": {
+      "FileName": "kab_portfolio_transaction_20170504_153636.txt",
+      "Result": "Failed"
+   },
+   "test2_20170504_153636.txt": {
+      "FileName": "test2_20170504_153636.txt",
+      "Result": "Pass"
+   },
+   "test_20170504_153636.csv": {
+      "FileName": "test_20170504_153636.csv",
+      "Result": "Pass"
+   }
+}
