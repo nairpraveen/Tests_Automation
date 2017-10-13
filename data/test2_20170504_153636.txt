@@ -1,6 +1,0 @@
-user,username,pwd
-1,,123
-2,def,456
-3,efg,789
-4,,453
-,tyu,678
