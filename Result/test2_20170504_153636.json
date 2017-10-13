@@ -1,7 +1,11 @@
 {
     "Test-1": {
         "Test name": "Check for nulls",
-        "Result": "Passed"
+        "Result": "Failed/Nulls are found",
+        "Null values found in": [
+            "username: [1, 4]",
+            " user: [5]"
+        ]
     },
     "Test-2": {
         "Test name": "Column names",
