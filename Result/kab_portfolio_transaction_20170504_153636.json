@@ -3,9 +3,7 @@
         "Test name": "Check for nulls",
         "Result": "Failed/Nulls are found",
         "Null values found in": [
-            "name: [1, 2]",
-            " id: [1]",
-            " value: [3]"
+            "ReversalTransactionID: [1, 2, 3, 4, 5]"
         ]
     },
     "Test-2": {
