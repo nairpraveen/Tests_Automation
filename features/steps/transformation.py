@@ -77,31 +77,6 @@ class scenario(object):
             else:
                 line1 = {"Test name": "Check for nulls", "Result": "Passed"}
 
-
-
-
-
-            """l4 = client_file_data
-            dff = pd.DataFrame(l4)
-            dff2 = dff[dff.isnull().any(axis=1)]
-            if (dff.isnull().sum().sum()):
-                dff2.index = dff2.index + 1
-                output1 = dff.columns[dff.isnull().any().tolist()] + ":" + str(dff2.index.tolist())
-                var1 = dff.columns[dff.isnull().any().tolist()].tolist()
-                var2 = dff2.index.tolist()
-                dict = {}
-                i = 0
-                print(var1,var2)
-                for s in var1:
-                    dict[s] = var2[i]
-                    i = i + 1
-                #print(dict)
-                # print(output1)
-                line1 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found",
-                         "Null values found in": output1.tolist()}
-            else:
-                line1 = {"Test name": "Check for nulls", "Result": "Passed"}"""
-
             # column names validation
 
             l1 = (list(client_file_data.columns))
