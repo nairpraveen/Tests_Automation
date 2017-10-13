@@ -18,21 +18,7 @@
     },
     "Test-2": {
         "Test name": "Column names",
-        "Result": "Failed",
-        "Output": {
-            "The partner file has other columns ": [
-                "TotalAmountOfLoanChargeOff",
-                "TotalAmountOfLoanChargeOffInterest",
-                "PortfolioTransactionId",
-                "PortfolioTransactionID",
-                "TotalAmountofLoanChargeOffFees",
-                "TotalAmountofLoanChargeOff",
-                "TotalAmountofLoanChargeOffPrincipal",
-                "TotalAmountOfLoanChargeOffPrincipal",
-                "TotalAmountOfLoanChargeOffFees",
-                "TotalAmountofLoanChargeOffInterest"
-            ]
-        }
+        "Result": "Passed"
     },
     "Test-3": {
         "Test name": "Column order",
@@ -64,11 +50,11 @@
                 "TotalLateFeeAmount",
                 "PayOffDate",
                 "ChargeOffDate",
-                "TotalAmountOfLoanChargeOff",
-                "TotalAmountOfLoanChargeOffFees",
-                "TotalAmountOfLoanChargeOffInterest",
-                "TotalAmountOfLoanChargeOffPrincipal",
-                "CurrentChargeOffBalance",
+                "TotalAmountofLoanChargeOff",
+                "TotalAmountofLoanChargeOffFees",
+                "TotalAmountofLoanChargeOffInterest",
+                "TotalAmountofLoanChargeOffPrincipal",
+                "CurrentChargeoffBalance",
                 "BillingTableID",
                 "InterestRate",
                 "TermLengthMonths",
@@ -96,10 +82,7 @@
             ]
         },
         "but the partner file has these columns with wrong order": [
-            "TotalAmountOfLoanChargeOff",
-            "TotalAmountOfLoanChargeOffFees",
-            "TotalAmountOfLoanChargeOffInterest",
-            "TotalAmountOfLoanChargeOffPrincipal",
+            "CurrentChargeoffBalance",
             "PortfolioTransactionID"
         ]
     }

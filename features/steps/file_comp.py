@@ -43,7 +43,7 @@ class f_comp(object):
 			if len(fail_dict) > 0:
 				result_line[key] = ["The file has passed before but failed now"]
 		else:
-			result_line = ["There are no passed files to compare"]
+			result_line = ["The current passed files doesn't have any other timestamp files to compare to"]
 
 		with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
 			json.dump(result_line, f2, indent=4)

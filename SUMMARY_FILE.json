@@ -1,23 +1,17 @@
-{
-    "Sample_20170504_153636.txt": [
-        "The file has no conflicts"
-    ],
-    "kab_portfolio_20170504_153636.txt": [
-        "The File has no conflicts because it's a newly created file"
-    ],
-    "kab_portfolio_projection_20170504_153636.txt": [
-        "The File has no conflicts because it's a newly created file"
-    ],
-    "kab_portfolio_transaction_20170504_153636.txt": [
-        "The File has no conflicts because it's a newly created file"
-    ],
-    "test_20170504_153636.csv": [
-        "The file has no conflicts"
-    ]
-}[
-    "There are no passed files to compare"
+[
+    "This is the first run, so the passed files doesn't have any previous files to compare to"
 ][
-    "There are no passed files to compare"
+    "This is the first run, so the passed files doesn't have any previous files to compare to"
 ][
-    "There are no passed files to compare"
+    "This is the first run, so the passed files doesn't have any previous files to compare to"
+][
+    "This is the first run, so the passed files doesn't have any previous files to compare to"
+][
+    "This is the first run, so the passed files doesn't have any previous files to compare to"
+][
+    "The current passed files doesn't have any other timestamp files to compare to"
+][
+    "The current passed files doesn't have any other timestamp files to compare to"
+][
+    "The current passed files doesn't have any other timestamp files to compare to"
 ]
