@@ -105,13 +105,13 @@ class scenario(object):
 				if int(json_def_data_columns[col]['order']) <= len(client_file_data_columns_list):
 					def_col[int(json_def_data_columns[col]['order']) - 1] = col
 					def_col.update(def_col)
-			if len(def_col.keys()) != len(client_file_data_columns_list):
+			if len(def_col.keys()) != len(client_file_data_columns_list_case_sensitive):
 				fail_list[-1000] = "Length of the columns doesn't match and the columns present in partner files are"
-				for i in range(len(client_file_data_columns_list)):
-					fail_list[i] = str(client_file_data_columns_list[i])
+				for i in range(len(client_file_data_columns_list_case_sensitive)):
+					fail_list[i] = str(client_file_data_columns_list_case_sensitive[i])
 			else:
 				for i in def_col:
-					if str(def_col[i]) == str(client_file_data_columns_list[i]):
+					if str(def_col[i]).lower() == str(client_file_data_columns_list_case_sensitive[i]):
 						pass_list[i] = str(def_col[i])
 					else:
 						fail_list[i] = str(def_col[i])
