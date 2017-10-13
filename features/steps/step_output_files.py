@@ -26,24 +26,21 @@ def step_given_the_file(context):
 					file_comp = f_comp()
 					comparison = file_comp.comp(date, timestamp, resultsfiles_loc)
 
-					@then('check null values')
-					def step_check_null_values(context):
-						pass
-
-
 					@then('column names should match')
 					def step_column_names_should_match(context):
 						pass
-
 
 					@then('column order should match')
 					def step_column_order_should_match(context):
 						pass
 
+					@then('check null values')
+					def step_check_null_values(context):
+						pass
+
 					@then('empty rows')
 					def step_empty_rows(context):
 						pass
-
 
 					@then('data type check')
 					def step_data_type_check(context):
@@ -52,17 +49,16 @@ def step_given_the_file(context):
 				else:
 					print ("There are no files with the given timestamp")
 
-					@then('check null values')
-					def step_check_null_values(context):
-						assert context.text, "REQUIRE: corrent data input"
-
 					@then('column names should match')
 					def step_column_names_should_match(context):
 						assert context.text, "REQUIRE: corrent data input"
 
-
 					@then('column order should match')
 					def step_column_order_should_match(context):
+						assert context.text, "REQUIRE: corrent data input"
+
+					@then('check null values')
+					def step_check_null_values(context):
 						assert context.text, "REQUIRE: corrent data input"
 
 					@then('empty rows')

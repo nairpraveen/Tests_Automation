@@ -59,29 +59,6 @@ class scenario(object):
 			json_def_data = json.load(open(json_def), object_pairs_hook=OrderedDict)
 			json_def_data_no_orderdict = pd.read_json(json_def)
 
-
-			#checking for nulls
-
-			client_file_data_df = pd.DataFrame(client_file_data)
-			client_file_data_df.index=client_file_data_df.index+1
-			client_file_data_dff2 = client_file_data_df.isnull().stack()[lambda x: x].index.tolist()
-			if (client_file_data_df.isnull().sum().sum()):
-				dict1={}
-				output1 = client_file_data_dff2
-				for value,columns in output1:
-					if columns in dict1.keys():
-						b=dict1.get(columns)
-						b.append(value)
-						dict1[columns]=b
-					else:
-						y = []
-						y.append(value)
-						dict1[columns]=y
-				line1 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found",
-						 "Null values found in": str(dict1).replace('],',']],').replace('{','').replace('}','').replace("'","").split('],')}
-			else:
-				line1 = {"Test name": "Check for nulls", "Result": "Passed"}
-
 			# column names validation
 
 			client_file_data_columns_list = (list(client_file_data.columns))
@@ -90,9 +67,9 @@ class scenario(object):
 			json_def_data_columns_list_case_sensitive = [i.lower() for i in json_def_data_columns_list]
 
 			if len(set(client_file_data_columns_list_case_sensitive).intersection(json_def_data_columns_list_case_sensitive)) == len(json_def_data_columns_list_case_sensitive):
-				line2 = {"Test name": "Column names", "Result": "Passed"}
+				line1 = {"Test name": "Column names", "Result": "Passed"}
 			else:
-				line2 = {"Test name": "Column names", "Result": "Failed", "Output": {
+				line1 = {"Test name": "Column names", "Result": "Failed", "Output": {
 					"There are different columns in partner files which are ":list(set(client_file_data_columns_list_case_sensitive).union(json_def_data_columns_list_case_sensitive) - set(client_file_data_columns_list_case_sensitive).intersection(json_def_data_columns_list_case_sensitive))}}
 
 			# column order validation
@@ -117,12 +94,34 @@ class scenario(object):
 						fail_list[i] = str(def_col[i])
 			if len(fail_list) != 0:
 
-				line3 = {"Test name": "Column order", "Result": "Failed",
+				line2 = {"Test name": "Column order", "Result": "Failed",
 						 "Output": {"the expected column order is": list(def_col.values())},
 						 "but the partner file has these columns with wrong order": list(fail_list.values())}
 
 			else:
-				line3 = {"Test name": "Column order", "Result": "Passed"}
+				line2 = {"Test name": "Column order", "Result": "Passed"}
+
+			#checking for nulls
+
+			client_file_data_df = pd.DataFrame(client_file_data)
+			client_file_data_df.index=client_file_data_df.index+1
+			client_file_data_dff2 = client_file_data_df.isnull().stack()[lambda x: x].index.tolist()
+			if (client_file_data_df.isnull().sum().sum()):
+				dict1={}
+				output1 = client_file_data_dff2
+				for value,columns in output1:
+					if columns in dict1.keys():
+						b=dict1.get(columns)
+						b.append(value)
+						dict1[columns]=b
+					else:
+						y = []
+						y.append(value)
+						dict1[columns]=y
+				line3 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found",
+						 "Null values found in": str(dict1).replace('],',']],').replace('{','').replace('}','').replace("'","").split('],')}
+			else:
+				line3 = {"Test name": "Check for nulls", "Result": "Passed"}
 
 			# checking the empty rows
 
@@ -205,7 +204,6 @@ class scenario(object):
 				# failed control file
 
 				fail_control_file_data.append(client_file_name)
-				
 
 			# writing the output to the result file
 
@@ -217,11 +215,12 @@ class scenario(object):
 				json.dump(final_lines_to_file, output, indent=4)
 			output.close()
 
-		pass_control_file='PassControl_'+date+"_"+timestamp+'.txt'
-		with open(pass_fail_control_file+pass_control_file, 'w') as out:
-			out.write('Filename|Rowcount')
-			for line in pass_control_file_data:
-				out.write('\n'+line)
+		if len(pass_control_file_data) != 0:
+			pass_control_file='PassControl_'+date+"_"+timestamp+'.txt'
+			with open(pass_fail_control_file+pass_control_file, 'w') as out:
+				out.write('Filename|Rowcount')
+				for line in pass_control_file_data:
+					out.write('\n'+line)
 
 		if len(fail_control_file_data) != 0:
 			fail_file='FailedFile_'+date+"_"+timestamp+'.txt'

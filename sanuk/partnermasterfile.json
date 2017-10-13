@@ -73,6 +73,11 @@
     {
       "filename": "kab_account_phone",
       "filedeffile": "definition_data/AccountPhoneFileDefinition.json"
+    },
+    "file15":
+    {
+      "filename": "sample",
+      "filedeffile": "definition_data/SampleTestFileDefinition.json"
     }
   }
 }

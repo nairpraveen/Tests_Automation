@@ -1,8 +1,8 @@
 {
   "filename": "Sample",
-  "filenameformat" : "Sample_yyyymmdd.txt",
+  "filenameformat" : "sample_yyyymmdd.txt",
   "decimalseparator" : ".",
-  "fieldseparator": "{",
+  "fieldseparator": ",",
   "dateformat": "YYYYMMDD",
   "timeformat": "",
   "availability": "Daily",
