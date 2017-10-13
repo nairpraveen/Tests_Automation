@@ -67,13 +67,15 @@ class scenario(object):
             # column names validation
 
             l1 = (list(client_file_data.columns))
+            l1_case_sensitive = [i.lower() for i in l1]
             l2 = (list(json_def_data["columns"]))
+            l2_case_sensitive = [i.lower() for i in l2]
 
-            if len(set(l1).intersection(l2)) == len(l2):
+            if len(set(l1_case_sensitive).intersection(l2_case_sensitive)) == len(l2_case_sensitive):
                 line2 = {"Test name": "Column names", "Result": "Passed"}
             else:
                 line2 = {"Test name": "Column names", "Result": "Failed", "Output": {
-                    "The partner file has other columns ":list(set(l1).union(l2) - set(l1).intersection(l2))}}
+                    "There are different columns in partner files which are ":list(set(l1_case_sensitive).union(l2_case_sensitive) - set(l1_case_sensitive).intersection(l2_case_sensitive))}}
 
             # column order validation
 
