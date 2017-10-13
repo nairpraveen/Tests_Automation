@@ -53,16 +53,54 @@ class scenario(object):
             client_file_data = pd.read_csv(client_file, sep=sep_value)
             json_def_data = json.load(open(json_def), object_pairs_hook=OrderedDict)
 
+
+            #checking for nulls
+
             l4 = client_file_data
+            dff = pd.DataFrame(l4)
+            dff.index=dff.index+1
+            dff2 = dff.isnull().stack()[lambda x: x].index.tolist()
+            if (dff.isnull().sum().sum()):
+                dict1={}
+                output1 = dff2
+                for value,columns in output1:
+                    if columns in dict1.keys():
+                        b=dict1.get(columns)
+                        b.append(value)
+                        dict1[columns]=b
+                    else:
+                        y = []
+                        y.append(value)
+                        dict1[columns]=y
+                line1 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found",
+                         "Null values found in": str(dict1).replace('],',']],').replace('{','').replace('}','').replace("'","").split('],')}
+            else:
+                line1 = {"Test name": "Check for nulls", "Result": "Passed"}
+
+
+
+
+
+            """l4 = client_file_data
             dff = pd.DataFrame(l4)
             dff2 = dff[dff.isnull().any(axis=1)]
             if (dff.isnull().sum().sum()):
                 dff2.index = dff2.index + 1
                 output1 = dff.columns[dff.isnull().any().tolist()] + ":" + str(dff2.index.tolist())
+                var1 = dff.columns[dff.isnull().any().tolist()].tolist()
+                var2 = dff2.index.tolist()
+                dict = {}
+                i = 0
+                print(var1,var2)
+                for s in var1:
+                    dict[s] = var2[i]
+                    i = i + 1
+                #print(dict)
+                # print(output1)
                 line1 = {"Test name": "Check for nulls", "Result": "Failed/Nulls are found",
                          "Null values found in": output1.tolist()}
             else:
-                line1 = {"Test name": "Check for nulls", "Result": "Passed"}
+                line1 = {"Test name": "Check for nulls", "Result": "Passed"}"""
 
             # column names validation
 
