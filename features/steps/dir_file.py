@@ -10,11 +10,11 @@ class dir_create(object):
 		self.fn = None
 
 	def dir(self, resultsfilelocation):
-		today_now = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-		mydir_pass = os.path.join(resultsfilelocation, today_now, "Pass")
-		mydir_fail = os.path.join(resultsfilelocation, today_now, "Failed")
-		mydir_result = os.path.join(resultsfilelocation, today_now, "Result")
-		mydir_summary_result = os.path.join(resultsfilelocation, "Summary_Result", today_now)
+		mydir_pass = os.path.join(resultsfilelocation, "Pass")
+		mydir_fail = os.path.join(resultsfilelocation, "Failed")
+		mydir_result = os.path.join(resultsfilelocation, "Result")
+		#mydir_passcontrolfiles=os.path.join(resultsfilelocation,"PassControlFiles")
+		mydir_summary_result = os.path.join(resultsfilelocation, "Summary_Result")
 		if not os.path.exists(mydir_pass):
 		    os.makedirs(mydir_pass)
 
@@ -25,7 +25,10 @@ class dir_create(object):
 		if not os.path.exists(mydir_result):
 		    os.makedirs(mydir_result)
 
+		#if not os.path.exists(mydir_passcontrolfiles):
+		    #os.makedirs(mydir_passcontrolfiles)
+
 		if not os.path.exists(mydir_summary_result):
 		    os.makedirs(mydir_summary_result)
 
-		return today_now, mydir_pass, mydir_fail, mydir_result, mydir_summary_result
+		return  mydir_pass, mydir_fail, mydir_result, mydir_summary_result

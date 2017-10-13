@@ -1,59 +1,50 @@
 import pandas as pd
 from pathlib import Path
 import json
-import os, glob
+import os, glob, re
 import filecmp
 
+
 class f_comp(object):
-	"""docstring for Count"""
+	"""docstring for file comparison"""
 
 
 	def __init__(self):
 		self.fn = None
 
 
-	def comp(self, text_file_summary_result, resultsfiles_loc):
+	def comp(self, date, timestamp, resultsfiles_loc):
 
-		final_result, result = {}, {}
-		my_file = Path(text_file_summary_result)
-		if my_file.exists():
+		pass_file_list = os.listdir(resultsfiles_loc+"Pass"+"/")
+		fail_file_list = os.listdir(resultsfiles_loc+"Failed"+"/")
+		result_line, pass_dict, fail_dict = {}, {}, {}
+		for pass_file in range(0, len(pass_file_list)):
+			file_name = pass_file_list[pass_file].rsplit(date, 1)[0]
+			for file in pass_file_list:
+				if re.search(str(file_name), file):
+					pass_dict[pass_file_list[pass_file]] = file
 
-			file_list = sorted(os.listdir(resultsfiles_loc+"Summary_Result"+"/"))
-
-			if len(file_list) > 1:
-
-				with open(resultsfiles_loc+"Summary_Result"+"/"+file_list[len(file_list)-1]+"/"+"summary_result.json", 'r') as datafile:
-					latest_data = json.load(datafile)
-				latest_data = pd.DataFrame(latest_data)
-
-				with open(resultsfiles_loc+"Summary_Result"+"/"+file_list[len(file_list)-2]+"/"+"summary_result.json", 'r') as datafile:
-					previous_latest_data = json.load(datafile)
-				previous_latest_data = pd.DataFrame(previous_latest_data)
-
-				for i in range(0, len(latest_data.ix[1].index)):
-
-					if latest_data.ix[1].index[i] == previous_latest_data.ix[1].index[i] and latest_data.ix[1][i] == "Pass" and previous_latest_data.ix[1][i] == "Pass":
-
-						line = filecmp.cmp(resultsfiles_loc+file_list[len(file_list)-1]+"/"+"Pass"+"/"+latest_data.ix[1].index[i], resultsfiles_loc+file_list[len(file_list)-2]+"/"+"Pass"+"/"+previous_latest_data.ix[1].index[i])
-						if line == "False":
-							result_line = ["The file is different from the Previous created file"]
-						else:
-							result_line = ["The file has no conflicts"]
+		for fail_file in range(0, len(fail_file_list)):
+			file_name = fail_file_list[fail_file].rsplit(date, 1)[0]
+			for file in pass_file_list:
+				if re.search(str(file_name), file):
+					fail_dict[fail_file_list[fail_file]] = file
 
 
-					elif latest_data.ix[1].index[i] == previous_latest_data.ix[1].index[i] and latest_data.ix[1][i] == "Failed" and previous_latest_data.ix[1][i] == "Pass":
+		pass_dict = { k:v for k,v in pass_dict.items() if k!=v }
+		fail_dict = { k:v for k,v in fail_dict.items() if k!=v }
+		if len(pass_dict) > 0:
+			for key, value in pass_dict.items():
+				line = filecmp.cmp(resultsfiles_loc+"Pass"+"/"+key, resultsfiles_loc+"Pass"+"/"+value)
+				if line == "False":
+					result_line[key] = ["The file is different from the Previous created file"]
+				else:
+					result_line[key] = ["The file has no conflicts"]
+			if len(fail_dict) > 0:
+				result_line[key] = ["The file has passed before but failed now"]
+		else:
+			result_line = ["The current passed files doesn't have any other timestamp files to compare to"]
 
-						line = filecmp.cmp(resultsfiles_loc+file_list[len(file_list)-1]+"/"+"Failed"+"/"+latest_data.ix[1].index[i], resultsfiles_loc+file_list[len(file_list)-2]+"/"+"Pass"+"/"+previous_latest_data.ix[1].index[i])
-						if line == "False":
-							result_line = ["The file is different from the Previous created file"]
-						else:
-							result_line = ["The file has no conflicts"]
-					else:
-						result_line = ["The File has no conflicts because it's a newly created file"]
-
-					result[latest_data.ix[1].index[i]] = result_line
-				final_result[file_list[len(file_list)-1]] = result
-
-				with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
-					json.dump(final_result, f2, indent=4)
-				f2.close()
+		with open(resultsfiles_loc+"SUMMARY_FILE.json", 'a') as f2:
+			json.dump(result_line, f2, indent=4)
+		f2.close()

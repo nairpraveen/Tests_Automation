@@ -286,7 +286,7 @@
       "allowempty": "Yes",
       "description": "Date the loan was charged off"
     },
-    "TotalAmountOfLoanChargeOff": {
+    "TotalAmountofLoanChargeOff": {
       "order": "26",
       "dbtype": "DECIMAL(18,2)",
       "minvalue" : "",
@@ -297,7 +297,7 @@
       "allowempty": "Yes",
       "description": "Total loan balance charged off"
     },
-    "TotalAmountOfLoanChargeOffFees": {
+    "TotalAmountofLoanChargeOffFees": {
       "order": "27",
       "dbtype": "DECIMAL(18,2)",
       "minvalue" : "",
@@ -308,7 +308,7 @@
       "allowempty": "Yes",
       "description": "Fee balance charged off"
     },
-    "TotalAmountOfLoanChargeOffInterest": {
+    "TotalAmountofLoanChargeOffInterest": {
       "order": "28",
       "dbtype": "DECIMAL(18,2)",
       "minvalue" : "",
@@ -319,7 +319,7 @@
       "allowempty": "Yes",
       "description": "Interest balance charged off"
     },
-    "TotalAmountOfLoanChargeOffPrincipal": {
+    "TotalAmountofLoanChargeOffPrincipal": {
       "order": "29",
       "dbtype": "DECIMAL(18,2)",
       "minvalue" : "",
@@ -330,7 +330,7 @@
       "allowempty": "Yes",
       "description": "Principal balance charged off"
     },
-    "CurrentChargeOffBalance": {
+    "CurrentChargeoffBalance": {
       "order": "30",
       "dbtype": "DECIMAL(18,2)",
       "minvalue" : "",

@@ -9,53 +9,73 @@ from connect import connection
 
 @given('a file')
 def step_given_the_file(context):
-	date = context.config.userdata.get("date")
-	masterfile_loc = context.config.userdata.get("masterfile_loc")
-	resultsfiles_loc = context.config.userdata.get("resultsfiles_loc")
 	context.files = retrieve_files()
 	context.transformation = scenario()
-	context.connect=connection()
-	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc, resultsfiles_loc)
-	assert_that(len(datafiles_names) > 0)
-
-
-@then('check null values')
-def step_check_null_values(context):
 	date = context.config.userdata.get("date")
-	masterfile_loc = context.config.userdata.get("masterfile_loc")
-	resultsfiles_loc = context.config.userdata.get("resultsfiles_loc")
-	datafiles_names, deffiles_names, control_data_file, control_def_file_loc = context.files.files(date, masterfile_loc, resultsfiles_loc)
-	dir_file = dir_create()
-	values = dir_file.dir(resultsfiles_loc)
-	text_file_summary_result, final_lines_to_file = context.transformation.scenario_writing_to_files(values[0], resultsfiles_loc, datafiles_names, deffiles_names, control_data_file, control_def_file_loc)
-	file_comp = f_comp()
-	comparison = file_comp.comp(text_file_summary_result, resultsfiles_loc)
+	if len(date) == 8:
+		masterfile_loc = context.config.userdata.get("masterfile_loc")
+		resultsfiles_loc = context.config.userdata.get("resultsfiles_loc")
+		timestamp = context.config.userdata.get("timestamp")
+		if len(timestamp) >= 6:
+			try:
+				datafiles_names, deffiles_names, control_def_file_loc = context.files.files(date, masterfile_loc, resultsfiles_loc,timestamp)
+				if len(datafiles_names) != 0 and len(deffiles_names) != 0 and len(datafiles_names) == len(deffiles_names):
+					dir_file = dir_create()
+					values = dir_file.dir(resultsfiles_loc)
+					final_lines_to_file = context.transformation.scenario_writing_to_files(resultsfiles_loc, datafiles_names,deffiles_names, control_def_file_loc, date, timestamp)
+					file_comp = f_comp()
+					comparison = file_comp.comp(date, timestamp, resultsfiles_loc)
+
+					@then('check null values')
+					def step_check_null_values(context):
+						pass
 
 
-@then('column names should match')
-def step_column_names_should_match(context):
-	pass
+					@then('column names should match')
+					def step_column_names_should_match(context):
+						pass
 
 
-@then('column order should match')
-def step_column_order_should_match(context):
-	pass
+					@then('column order should match')
+					def step_column_order_should_match(context):
+						pass
+
+					@then('empty rows')
+					def step_empty_rows(context):
+						pass
 
 
-@then('empty rows')
-def step_empty_rows(context):
-	pass
+					@then('data type check')
+					def step_data_type_check(context):
+						pass
+
+				else:
+					print ("There are no files with the given timestamp")
+
+					@then('check null values')
+					def step_check_null_values(context):
+						assert context.text, "REQUIRE: corrent data input"
+
+					@then('column names should match')
+					def step_column_names_should_match(context):
+						assert context.text, "REQUIRE: corrent data input"
 
 
-@then('query result matched with partner file result')
-def step_sql_test(context):
-	pass	
+					@then('column order should match')
+					def step_column_order_should_match(context):
+						assert context.text, "REQUIRE: corrent data input"
 
+					@then('empty rows')
+					def step_empty_rows(context):
+						assert context.text, "REQUIRE: corrent data input"
 
-@then('data type check')
-def step_data_type_check(context):
-	pass
+					@then('data type check')
+					def step_data_type_check(context):
+						assert context.text, "REQUIRE: corrent data input"
 
-@then ('special characters')
-def step_special_characters(context):
-	pass
+			except TypeError as err:
+				print ("Error Message: "+str(err))
+		else:
+			print (len(timestamp) >= 6), "Given timestamp doesn't match"
+	else:
+		assert (len(date) == 8), "Given Date format doesn't match"
