@@ -129,10 +129,15 @@ class scenario(object):
 			i = 1
 			matches = {}
 			empty_rows_list = []
-			
+
+			file_extension = str(client_file_name.split('.')[1])
+
 			with open(client_file,'r') as out:
 				for line in out:
 					if line == '\n':
+						matches[i] = "matched"
+						matches.update(matches)
+					elif len(line) == 3:
 						matches[i] = "matched"
 						matches.update(matches)
 					else:
