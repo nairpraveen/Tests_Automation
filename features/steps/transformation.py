@@ -39,7 +39,7 @@ class scenario(object):
 		# control_file = scenario.control_file_values(control_file, control_file_sep_value)
 
 		final_lines_to_file = {}
-		pass_control_file_data, fail_control_file_data = [], []
+		pass_control_file_data, fail_control_file_data, Summary_line = [], [], []
 
 		for i in range(0, len(datafiles_names)):
 
@@ -54,6 +54,7 @@ class scenario(object):
 			text_file_fail = resultsfilelocation + "/" + "Failed/"
 			text_file_result = resultsfilelocation + "/" + "Result/" + client_file_name_split + ".json"
 			pass_fail_control_file = resultsfilelocation + "/" + "Summary_Result/"
+			file_comp = resultsfilelocation + "/" + "File_comp/"
 
 			client_file_data = pd.read_csv(client_file, sep=sep_value)
 			json_def_data = json.load(open(json_def), object_pairs_hook=OrderedDict)
@@ -165,7 +166,7 @@ class scenario(object):
 
 			result_fail_list, column_pass_list, column_fail_list = [], [], []
 
-			datatype_col_rename = {'INT' : 'int64', 'int' : 'int64', 'BIGINT' : 'int64', 'SMALLINT' : 'int64', 'NVARCHAR(50)' : 'str', 'CHAR(8)' : 'str', 'DECIMAL(18,2)' : 'float64' , 'BIT' : 'bool_',  'DECIMAL(18,4)' : 'float64', 'CHAR(2)' : 'str', 'VARCHAR(10)' : 'str', 'CHAR(1)' : 'str','VARCHAR(50)':'str', 'DATE' : 'date', 'NVARCHAR(3)' : 'str', 'NVARCHAR(500)' : 'str', 'NVARCHAR(100)' : 'str', 'NVARCHAR(255)' : 'str', 'nvarchar(255)' : 'str', 'NVARCHAR(25)' : 'str', 'NVARCHAR(3000)' : 'str', 'NVARCHAR(40)' : 'str', 'NVARCHAR(20)' : 'str'}
+			datatype_col_rename = {'INT' : 'int64', 'int' : 'int64', 'BIGINT' : 'int64', 'SMALLINT' : 'int64', 'NVARCHAR(50)' : 'str', 'CHAR(8)' : 'str', 'DECIMAL(18,2)' : 'float64' , 'BIT' : 'bool_',  'DECIMAL(18,4)' : 'float64', 'CHAR(2)' : 'str', 'VARCHAR(10)' : 'str', 'CHAR(1)' : 'str','VARCHAR(50)':'str', 'DATE' : 'date', 'NVARCHAR(3)' : 'str', 'NVARCHAR(500)' : 'str', 'NVARCHAR(100)' : 'str', 'NVARCHAR(250)' : 'str', 'NVARCHAR(255)' : 'str', 'NVARCHAR(255)' : 'str', 'NVARCHAR(25)' : 'str', 'NVARCHAR(3000)' : 'str', 'NVARCHAR(40)' : 'str', 'NVARCHAR(20)' : 'str', 'NVARCHAR(10)' : 'str', 'NVARCHAR(1000)' : 'str'}
 
 			for index, col in enumerate(json_def_data_columns_list_index):
 				datatype_col[col] = json_def_data_columns_list_no_orderdict[col]['dbtype']
@@ -196,7 +197,7 @@ class scenario(object):
 				with open(text_file_pass + client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
-				Summary_line = {"FileName": client_file_name, "Result": "Pass"}
+				Summary_line.append(client_file_name + "|Pass")
 
 				# pass control file
 
@@ -206,10 +207,15 @@ class scenario(object):
 				with open(text_file_fail + client_file_name, 'w') as f1:
 					for line in open(client_file):
 						f1.write(line)
+				Summary_line.append(client_file_name + "|Failed")
 
 				# failed control file
 
 				fail_control_file_data.append(client_file_name)
+
+			with open(file_comp+"files_result.txt", 'a') as out:
+				for line in Summary_line:
+					out.write('\n'+line)
 
 			# writing the output to the result file
 
@@ -217,7 +223,7 @@ class scenario(object):
 
 			# creating a json output file in result folder
 
-			with open(text_file_result, "w") as output:
+			with open(text_file_result, "a") as output:
 				json.dump(final_lines_to_file, output, indent=4)
 			output.close()
 

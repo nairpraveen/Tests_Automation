@@ -1,4 +1,0 @@
-Filename
-kab_portfolio_transaction_20170504_153636.txt
-sample_20170504_153636.csv
-kab_portfolio_20170504_153636.txt

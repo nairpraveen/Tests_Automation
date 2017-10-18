@@ -24,7 +24,7 @@ def step_given_the_file(context):
 					values = dir_file.dir(resultsfiles_loc)
 					final_lines_to_file = context.transformation.scenario_writing_to_files(resultsfiles_loc, datafiles_names,deffiles_names, control_def_file_loc, date, timestamp)
 					file_comp = f_comp()
-					comparison = file_comp.comp(date, timestamp, resultsfiles_loc)
+					comparison = file_comp.comp(date, timestamp, resultsfiles_loc, datafiles_names)
 
 					@then('column names should match')
 					def step_column_names_should_match(context):
